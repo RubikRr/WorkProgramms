@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ExcelToWordProject.Models;
 
 namespace ExcelToWordProject.Forms
 {
@@ -16,6 +17,11 @@ namespace ExcelToWordProject.Forms
         {
             InitializeComponent();
             CenterToScreen();
+        }
+
+        private void folderPathButton_Click(object sender, EventArgs e)
+        {
+            resultFolderPathTextBox.Text = FileSelection.ResultPath();
         }
     }
 }

@@ -12,6 +12,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using ExcelToWordProject.Models;
+
 using Xceed.Words.NET;
 
 namespace ExcelToWordProject
@@ -191,12 +193,15 @@ namespace ExcelToWordProject
 
         private void FolderPathButton_Click(object sender, EventArgs e)
         {
-            FolderBrowserDialog folderDialog = new FolderBrowserDialog();
-            folderDialog.SelectedPath = Application.StartupPath;
-            if (folderDialog.ShowDialog() == DialogResult.OK)
-            {
-                resultFolderPathTextBox.Text = folderDialog.SelectedPath;
-            }
+
+            resultFolderPathTextBox.Text = FileSelection.ResultPath();
+            
+            //FolderBrowserDialog folderDialog = new FolderBrowserDialog();
+            //folderDialog.SelectedPath = Application.StartupPath;
+            //if (folderDialog.ShowDialog() == DialogResult.OK)
+            //{
+            //    resultFolderPathTextBox.Text = folderDialog.SelectedPath;
+            //}
         }
 
         private void TemplateFilePathButton_Click(object sender, EventArgs e)
