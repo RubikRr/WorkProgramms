@@ -36,6 +36,7 @@
             this.constantsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.списокТеговToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.PersonnelReferenceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bodyPanel = new System.Windows.Forms.Panel();
             this.bodyGroupBox = new System.Windows.Forms.GroupBox();
             this.excelFilesLabelClear = new System.Windows.Forms.LinkLabel();
@@ -70,7 +71,8 @@
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
             this.списокТеговToolStripMenuItem,
-            this.оПрограммеToolStripMenuItem});
+            this.оПрограммеToolStripMenuItem,
+            this.PersonnelReferenceToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Padding = new System.Windows.Forms.Padding(9, 2, 0, 2);
@@ -122,6 +124,13 @@
             this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.оПрограммеToolStripMenuItem.Text = "О программе";
             this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ОПрограммеToolStripMenuItem_Click);
+            // 
+            // PersonnelReferenceToolStripMenuItem
+            // 
+            this.PersonnelReferenceToolStripMenuItem.Name = "PersonnelReferenceToolStripMenuItem";
+            this.PersonnelReferenceToolStripMenuItem.Size = new System.Drawing.Size(103, 20);
+            this.PersonnelReferenceToolStripMenuItem.Text = "Парсер Сосика";
+            this.PersonnelReferenceToolStripMenuItem.Click += new System.EventHandler(this.PersonnelReferenceToolStripMenuItem_Click);
             // 
             // bodyPanel
             // 
@@ -412,6 +421,7 @@
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private System.Windows.Forms.LinkLabel excelFilesLabelClear;
         private System.Windows.Forms.Label excelFilesLabel;
+        private System.Windows.Forms.ToolStripMenuItem PersonnelReferenceToolStripMenuItem;
     }
 }
 

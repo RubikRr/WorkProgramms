@@ -60,35 +60,35 @@ namespace ExcelToWordProject.Models
             return result;
         }
 
-        public List<string> GetCellValue(string columnHeaderValue, int columnIndex, bool first = false)
-        {
-            List<string> result = new List<string>();
-            for (int i = 0; i < ExcelData.Tables[ListName].Rows.Count; i++)
-            {
-                string val = ExcelData.Tables[ListName].Rows[i][ColumnHeaderIndex] as string;
-                if (val == columnHeaderValue)
-                {
-                    result.Add(ExcelData.Tables[ListName].Rows[i][columnIndex] as string);
-                    if (first) return result;
-                }
-            }
-            return result;
-        }
+        //public List<string> GetCellValue(string columnHeaderValue, int columnIndex, bool first = false)
+        //{
+        //    List<string> result = new List<string>();
+        //    for (int i = 0; i < ExcelData.Tables[ListName].Rows.Count; i++)
+        //    {
+        //        string val = ExcelData.Tables[ListName].Rows[i][ColumnHeaderIndex] as string;
+        //        if (val == columnHeaderValue)
+        //        {
+        //            result.Add(ExcelData.Tables[ListName].Rows[i][columnIndex] as string);
+        //            if (first) return result;
+        //        }
+        //    }
+        //    return result;
+        //}
 
-        public List<string> GetCellValue(string columnHeaderValue, string rowHeaderValue, bool first = false)
-        {
-            List<string> result = new List<string>();
-            for (int i = 0; i < ExcelData.Tables[ListName].Rows.Count; i++)
-            {
-                string val = ExcelData.Tables[ListName].Rows[i][ColumnHeaderIndex] as string;
-                if (val == columnHeaderValue)
-                {
-                    result.AddRange(GetCellValue(i, rowHeaderValue, first));
-                    if (first) return result;
-                }
-            }
-            return result;
-        }
+        //public List<string> GetCellValue(string columnHeaderValue, string rowHeaderValue, bool first = false)
+        //{
+        //    List<string> result = new List<string>();
+        //    for (int i = 0; i < ExcelData.Tables[ListName].Rows.Count; i++)
+        //    {
+        //        string val = ExcelData.Tables[ListName].Rows[i][ColumnHeaderIndex] as string;
+        //        if (val == columnHeaderValue)
+        //        {
+        //            result.AddRange(GetCellValue(i, rowHeaderValue, first));
+        //            if (first) return result;
+        //        }
+        //    }
+        //    return result;
+        //}
 
         public string GetFirstCellValue(int rowIndex, string rowHeaderValue, bool nullSafe = true)
         {

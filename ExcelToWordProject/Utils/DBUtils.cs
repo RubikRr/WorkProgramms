@@ -11,13 +11,13 @@ namespace ExcelToWordProject.Utils
     {
         public static MySqlConnection GetDBConnection()
         {
-            //string host = "192.168.205.130";
-            //int port = 3306;
-            //string database = "simplehr";
-            //string username = "root";
-            //string password = "1234";
+            string host = "a41035.mysql.mchost.ru";
+            int port = 3306;
+            string database = "a41035_1";
+            string username = "a41035_1";
+            string password = "Math535130";
 
-            //return DBMySQLUtils.GetDbConnection(host, port, database, username, password);
+            return DBMySQLUtils.GetDbConnection(host, port, database, username, password);
         }
     }
 }

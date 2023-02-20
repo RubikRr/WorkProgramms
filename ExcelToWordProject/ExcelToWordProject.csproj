@@ -114,6 +114,12 @@
     <Compile Include="Forms\RegularExpressionEditForm.Designer.cs">
       <DependentUpon>RegularExpressionEditForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\SosParser.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\SosParser.Designer.cs">
+      <DependentUpon>SosParser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\ExcelTableList.cs" />
     <Compile Include="Models\RegExpData.cs" />
     <Compile Include="Models\TempDictionaryItem.cs" />

@@ -24,6 +24,7 @@ namespace ExcelToWordProject
         TagListForm TagListForm;
         AboutProgramForm aboutProgramForm;
         GetDataParametersForm getDataParametersForm;
+        SosParser SosParser;
 
 
         SyllabusParameters syllabusParameters;
@@ -38,7 +39,7 @@ namespace ExcelToWordProject
             SetToolTips();
 
         }
-
+        //Меняет главный экран в зависимости от количество Excel файликов
         private void SwitchExcelLoadingMode(bool single)
         {
             if(single)
@@ -63,7 +64,7 @@ namespace ExcelToWordProject
 
 
         }
-
+        //Подсказки на кнопках
         private void SetToolTips()
         {
             ToolTip toolTip = new ToolTip();
@@ -112,8 +113,10 @@ namespace ExcelToWordProject
                 //syllabusDocWriter.ConvertToDocx(resultFolderPath, templateFilePath, prefix,
                 //            new Progress<int>(percent => progressBar1.Value = percent));
 
-                await Task.Run(() => syllabusDocWriter.ConvertToDocx(resultFolderPath, templateFilePath, prefix,
-                            new Progress<int>(percent => progressBar1.Value = percent)));
+                //await Task.Run(() => syllabusDocWriter.ConvertToDocx(resultFolderPath, templateFilePath, prefix,
+                //            new Progress<int>(percent => progressBar1.Value = percent)));
+
+                await Task.Run(() => syllabusDocWriter.ConvertToDocx(resultFolderPath, templateFilePath, prefix));
             }
             catch (Exception ex)
             {
@@ -132,6 +135,7 @@ namespace ExcelToWordProject
         {
             if (LockButtons)
                 return;
+
             LockButtons = true;
             string selectedFilePath = filePathTextBox.Text;
             string templateFilePath = templateFilePathTextBox.Text;
@@ -263,6 +267,18 @@ namespace ExcelToWordProject
             }
             else
                 getDataParametersForm.Focus();
+        }
+
+      
+        private void PersonnelReferenceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (TagListForm == null || TagListForm.IsDisposed)
+            {
+                SosParser = new SosParser();
+                SosParser.ShowDialog();
+            }
+            else
+                SosParser.Focus();
         }
     }
 }

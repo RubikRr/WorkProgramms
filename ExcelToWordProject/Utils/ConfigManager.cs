@@ -46,7 +46,7 @@ namespace ExcelToWordProject.Utils
                 }
                 catch
                 {
-                    return settings;
+                    return settings; 
                 }
                 return settings;
             }
