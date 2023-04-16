@@ -57,12 +57,7 @@ namespace ExcelToWordProject
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-
-        }
-
+    
         private void SetToolTips()
         {
             ToolTip toolTip = new ToolTip();

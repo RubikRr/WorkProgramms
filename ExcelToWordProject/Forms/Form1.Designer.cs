@@ -362,7 +362,6 @@
             this.MinimumSize = new System.Drawing.Size(642, 441);
             this.Name = "MainForm";
             this.Text = "Граббер данных из Excel";
-            this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.bodyPanel.ResumeLayout(false);
