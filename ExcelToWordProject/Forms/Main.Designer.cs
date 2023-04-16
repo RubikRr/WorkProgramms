@@ -181,9 +181,8 @@
             this.excelFilesLabel.Name = "excelFilesLabel";
             this.excelFilesLabel.Size = new System.Drawing.Size(471, 26);
             this.excelFilesLabel.TabIndex = 11;
-            this.excelFilesLabel.Text = "Выбрано 0 файлов";
+            this.excelFilesLabel.Text = "Вы выбрали 0 ф.";
             this.excelFilesLabel.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.excelFilesLabel.Visible = false;
             // 
             // progressBar1
             // 
@@ -321,9 +320,9 @@
             this.filePathLabel.Location = new System.Drawing.Point(10, 23);
             this.filePathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.filePathLabel.Name = "filePathLabel";
-            this.filePathLabel.Size = new System.Drawing.Size(224, 18);
+            this.filePathLabel.Size = new System.Drawing.Size(328, 18);
             this.filePathLabel.TabIndex = 1;
-            this.filePathLabel.Text = "Путь к исходному Excel файлу";
+            this.filePathLabel.Text = "Выберете один или несколько Excel файлов";
             // 
             // filePathTextBox
             // 
@@ -334,6 +333,7 @@
             this.filePathTextBox.Name = "filePathTextBox";
             this.filePathTextBox.Size = new System.Drawing.Size(542, 26);
             this.filePathTextBox.TabIndex = 0;
+            this.filePathTextBox.Visible = false;
             // 
             // statusStrip1
             // 

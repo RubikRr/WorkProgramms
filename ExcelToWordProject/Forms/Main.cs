@@ -39,26 +39,18 @@ namespace ExcelToWordProject
 
         }
 
-        private void SwitchExcelLoadingMode(bool single)
+        private void ExcelLoadingMode()
         {
-            if(single)
-            {
-                excelFilesLabel.Visible = false;
-                excelFilesLabelClear.Visible = false;
-                filePathTextBox.Visible = true;
-                selectedExcels = new string[0];
-            }
-            else
-            {
+           
                 excelFilesLabel.Visible = true;
                 excelFilesLabelClear.Visible = true;
                 filePathTextBox.Visible = false;
                 filePathTextBox.Text = "";
-                excelFilesLabel.Text = "Выбрано " + selectedExcels.Length + " файлов";
-            }
+                excelFilesLabel.Text = "Вы выбрали " + selectedExcels.Length + " ф.";
+            
         }
 
-    
+        //Подсказки на кнопки
         private void SetToolTips()
         {
             ToolTip toolTip = new ToolTip();
@@ -128,14 +120,13 @@ namespace ExcelToWordProject
             if (LockButtons)
                 return;
             LockButtons = true;
-            string selectedFilePath = filePathTextBox.Text;
+            //string selectedFilePath = filePathTextBox.Text;
             string templateFilePath = templateFilePathTextBox.Text;
             string resultFolderPath = resultFolderPathTextBox.Text;
             
             
-            if(selectedExcels.Length <= 1)
-                 await ConvertProcessing(selectedFilePath, templateFilePath, resultFolderPath, resultFilePrefixTextBox.Text);
-            else if(selectedExcels.Length > 1)
+          
+            if(selectedExcels.Length >= 1)
                 for (int i = 0; i < selectedExcels.Length; i++)
                 {
                     status.Text = "Файл " + (i + 1) + " из " + selectedExcels.Length + "...";
@@ -171,12 +162,8 @@ namespace ExcelToWordProject
             fileDialog.Multiselect = true;
             if(fileDialog.ShowDialog() == DialogResult.OK)
             {
-                filePathTextBox.Text = fileDialog.FileName;
                 selectedExcels = fileDialog.FileNames;
-                if(selectedExcels.Length > 1)
-                    SwitchExcelLoadingMode(false);
-                else
-                    SwitchExcelLoadingMode(true);
+                ExcelLoadingMode();
             }
         }
 
@@ -235,7 +222,8 @@ namespace ExcelToWordProject
 
         private void ExcelFilesLabelClear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            SwitchExcelLoadingMode(true);
+            excelFilesLabelClear.Visible = false;
+            selectedExcels = new string[0];
         }
 
         private void ConstantsToolStripMenuItem_Click(object sender, EventArgs e)
