@@ -28,6 +28,7 @@ namespace ExcelToWordProject
         SyllabusParameters syllabusParameters;
 
         string[] selectedExcels = new string[0];
+
         public MainForm()
         {
             InitializeComponent();
@@ -210,7 +211,7 @@ namespace ExcelToWordProject
                 SmartTagSettingsForm.Focus();
         }
 
-        private void DefaultТегиToolStripMenuItem_Click(object sender, EventArgs e)
+        private void DefaultTagsToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (DefaultTagSettingsForm == null || DefaultTagSettingsForm.IsDisposed)
             {
@@ -221,7 +222,7 @@ namespace ExcelToWordProject
                 DefaultTagSettingsForm.Focus();
         }
 
-        private void СписокТеговToolStripMenuItem_Click(object sender, EventArgs e)
+        private void tagsListToolStripMenuItem_Click(object sender, EventArgs e)
         {
             if (TagListForm == null || TagListForm.IsDisposed)
             {

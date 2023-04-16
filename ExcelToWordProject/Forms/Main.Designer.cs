@@ -34,7 +34,7 @@
             this.defaultТегиToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.smartTagsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.constantsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.списокТеговToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tagsListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.оПрограммеToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.bodyPanel = new System.Windows.Forms.Panel();
             this.bodyGroupBox = new System.Windows.Forms.GroupBox();
@@ -69,7 +69,7 @@
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripMenuItem1,
-            this.списокТеговToolStripMenuItem,
+            this.tagsListToolStripMenuItem,
             this.оПрограммеToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -93,7 +93,7 @@
             this.defaultТегиToolStripMenuItem.Name = "defaultТегиToolStripMenuItem";
             this.defaultТегиToolStripMenuItem.Size = new System.Drawing.Size(245, 22);
             this.defaultТегиToolStripMenuItem.Text = "Обычные теги";
-            this.defaultТегиToolStripMenuItem.Click += new System.EventHandler(this.DefaultТегиToolStripMenuItem_Click);
+            this.defaultТегиToolStripMenuItem.Click += new System.EventHandler(this.DefaultTagsToolStripMenuItem_Click);
             // 
             // smartTagsToolStripMenuItem
             // 
@@ -109,13 +109,17 @@
             this.constantsToolStripMenuItem.Text = "Параметры получения данных";
             this.constantsToolStripMenuItem.Click += new System.EventHandler(this.ConstantsToolStripMenuItem_Click);
             // 
-            // списокТеговToolStripMenuItem
+            // tagsListToolStripMenuItem
             // 
-            this.списокТеговToolStripMenuItem.Name = "списокТеговToolStripMenuItem";
-            this.списокТеговToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
-            this.списокТеговToolStripMenuItem.Text = "Список тегов";
-            this.списокТеговToolStripMenuItem.Click += new System.EventHandler(this.СписокТеговToolStripMenuItem_Click);
-            
+            this.tagsListToolStripMenuItem.Name = "tagsListToolStripMenuItem";
+            this.tagsListToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
+            this.tagsListToolStripMenuItem.Text = "Список тегов";
+            this.tagsListToolStripMenuItem.Click += new System.EventHandler(this.tagsListToolStripMenuItem_Click);
+            // 
+            // оПрограммеToolStripMenuItem
+            // 
+            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
+            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(12, 20);
             // 
             // bodyPanel
             // 
@@ -401,7 +405,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel status;
-        private System.Windows.Forms.ToolStripMenuItem списокТеговToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem tagsListToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private System.Windows.Forms.LinkLabel excelFilesLabelClear;
         private System.Windows.Forms.Label excelFilesLabel;

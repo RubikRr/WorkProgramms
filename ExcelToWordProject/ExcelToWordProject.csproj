@@ -120,11 +120,11 @@
     <Compile Include="Syllabus\SyllabusExcelReader.cs" />
     <Compile Include="Syllabus\SyllabusParameters.cs" />
     <Compile Include="Syllabus\SyllabusDocWriter.cs" />
-    <Compile Include="Forms\Form1.cs">
+    <Compile Include="Forms\Main.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="Forms\Main.Designer.cs">
+      <DependentUpon>Main.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Content.cs" />
     <Compile Include="Models\Module.cs" />
@@ -149,8 +149,8 @@
     <EmbeddedResource Include="Forms\DescriptionEditForm.resx">
       <DependentUpon>DescriptionEditForm.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Forms\Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="Forms\Main.resx">
+      <DependentUpon>Main.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\GetDataParametersForm.resx">
       <DependentUpon>GetDataParametersForm.cs</DependentUpon>
@@ -230,6 +230,9 @@
       <ProductName>.NET Framework 3.5 SP1</ProductName>
       <Install>false</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\Strings\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
