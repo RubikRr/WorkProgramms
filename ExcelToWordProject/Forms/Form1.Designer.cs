@@ -115,13 +115,7 @@
             this.списокТеговToolStripMenuItem.Size = new System.Drawing.Size(92, 20);
             this.списокТеговToolStripMenuItem.Text = "Список тегов";
             this.списокТеговToolStripMenuItem.Click += new System.EventHandler(this.СписокТеговToolStripMenuItem_Click);
-            // 
-            // оПрограммеToolStripMenuItem
-            // 
-            this.оПрограммеToolStripMenuItem.Name = "оПрограммеToolStripMenuItem";
-            this.оПрограммеToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
-            this.оПрограммеToolStripMenuItem.Text = "О программе";
-            this.оПрограммеToolStripMenuItem.Click += new System.EventHandler(this.ОПрограммеToolStripMenuItem_Click);
+            
             // 
             // bodyPanel
             // 

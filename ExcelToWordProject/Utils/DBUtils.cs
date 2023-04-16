@@ -9,15 +9,15 @@ namespace ExcelToWordProject.Utils
 {
     internal class DBUtils
     {
-        public static MySqlConnection GetDBConnection()
-        {
-            //string host = "192.168.205.130";
-            //int port = 3306;
-            //string database = "simplehr";
-            //string username = "root";
-            //string password = "1234";
+        //public static MySqlConnection GetDBConnection()
+        //{
+        //    //string host = "192.168.205.130";
+        //    //int port = 3306;
+        //    //string database = "simplehr";
+        //    //string username = "root";
+        //    //string password = "1234";
 
-            //return DBMySQLUtils.GetDbConnection(host, port, database, username, password);
-        }
+        //    //return DBMySQLUtils.GetDbConnection(host, port, database, username, password);
+        //}
     }
 }

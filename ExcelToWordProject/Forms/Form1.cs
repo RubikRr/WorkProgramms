@@ -22,7 +22,6 @@ namespace ExcelToWordProject
         DefaultTagSettingsForm DefaultTagSettingsForm;
         SmartTagSettingsForm SmartTagSettingsForm;
         TagListForm TagListForm;
-        AboutProgramForm aboutProgramForm;
         GetDataParametersForm getDataParametersForm;
 
 
@@ -236,17 +235,6 @@ namespace ExcelToWordProject
             }
             else
                 TagListForm.Focus();
-        }
-
-        private void ОПрограммеToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            if (TagListForm == null || TagListForm.IsDisposed)
-            {
-                aboutProgramForm = new AboutProgramForm();
-                aboutProgramForm.ShowDialog();
-            }
-            else
-                aboutProgramForm.Focus();
         }
 
         private void ExcelFilesLabelClear_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)

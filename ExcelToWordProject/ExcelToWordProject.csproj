@@ -84,12 +84,6 @@
     <Compile Include="Components\MyTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Forms\AboutProgram.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\AboutProgram.Designer.cs">
-      <DependentUpon>AboutProgram.cs</DependentUpon>
-    </Compile>
     <Compile Include="Forms\DefaultTagSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -149,9 +143,6 @@
     <Compile Include="Utils\ExcelUtils.cs" />
     <Compile Include="Utils\OtherUtils.cs" />
     <Compile Include="Utils\PathUtils.cs" />
-    <EmbeddedResource Include="Forms\AboutProgram.resx">
-      <DependentUpon>AboutProgram.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Forms\DefaultTagSettingsForm.resx">
       <DependentUpon>DefaultTagSettingsForm.cs</DependentUpon>
     </EmbeddedResource>
