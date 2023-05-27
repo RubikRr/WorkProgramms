@@ -1,18 +1,20 @@
-﻿using ExcelToWordProject.Forms;
+﻿using EduPlans.Db;
+using ExcelToWordProject.Forms;
 using ExcelToWordProject.Models;
 using ExcelToWordProject.Syllabus;
 using ExcelToWordProject.Utils;
+using MySql.Data.MySqlClient;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
 namespace ExcelToWordProject
 {
     public partial class MainForm : Form
@@ -238,7 +240,32 @@ namespace ExcelToWordProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-            
+
+
+            string connectionString = "server=127.0.0.1;port=3306;database=work_programs;uid=root";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (var context = new SubjectContext(connection, false))
+                {
+                    context.Add("Немецкий язык");
+                    context.SaveChanges();
+
+
+                    context.SaveChanges();
+
+                }
+
+                //using (var context = new EduFormContext(connection, false))
+                //{
+                //    context.Add("Английский язык");
+                //    context.SaveChanges();
+
+
+
+                //}
+
+            }
         }
     }
 }

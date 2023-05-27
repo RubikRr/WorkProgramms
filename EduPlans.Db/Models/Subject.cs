@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EduPlans.Db
+namespace EduPlans.Db.Models
 {
-    public class Class1
+    public class Subject
     {
+        public int Id { get; set; }
+        public string Title{ get; set; }
     }
 }
