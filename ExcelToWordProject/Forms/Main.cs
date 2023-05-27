@@ -256,14 +256,14 @@ namespace ExcelToWordProject
 
                 }
 
-                //using (var context = new EduFormContext(connection, false))
-                //{
-                //    context.Add("Английский язык");
-                //    context.SaveChanges();
+                using (var context = new EduFormContext(connection, false))
+                {
+                    context.Add("Английский язык");
+                    context.SaveChanges();
 
 
 
-                //}
+                }
 
             }
         }
