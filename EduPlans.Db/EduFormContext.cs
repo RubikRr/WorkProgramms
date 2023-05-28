@@ -11,13 +11,13 @@ namespace EduPlans.Db
 {
     public class EduFormContext:DbContext
     {
-        public DbSet<Edu_Form> Edu_Forms { get; set; }
+        public DbSet<EduForm> Edu_Forms { get; set; }
 
         public EduFormContext(DbConnection connection, bool contextOwnConnection) : base(connection, contextOwnConnection) { }
 
         public void Add(string name)
         {
-            var eduForm = new Edu_Form { Title = name };
+            var eduForm = new EduForm { Title = name };
             Edu_Forms.Add(eduForm);
 
         }

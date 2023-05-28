@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace EduPlans.Db.Models
 {
     [Table("edu_forms")]
-    public class Edu_Form
+    public class EduForm
     {
         public int Id { get; set; }
 

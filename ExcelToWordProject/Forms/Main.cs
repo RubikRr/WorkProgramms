@@ -242,13 +242,13 @@ namespace ExcelToWordProject
         {
 
 
-            string connectionString = "server=127.0.0.1;port=3306;database=work_programs;uid=root";
-            using (MySqlConnection connection = new MySqlConnection(connectionString))
+
+            using (MySqlConnection connection =DbMySqlConnection.GetConnection() )
             {
                 connection.Open();
                 using (var context = new SubjectContext(connection, false))
                 {
-                    context.Add("Немецкий язык");
+                    context.Add("Физра");
                     context.SaveChanges();
 
 
