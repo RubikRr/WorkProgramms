@@ -1,4 +1,5 @@
-﻿using ExcelDataReader;
+﻿using EduPlans.Db;
+using ExcelDataReader;
 using ExcelToWordProject.Models;
 using ExcelToWordProject.Syllabus;
 using ExcelToWordProject.Utils;
@@ -62,30 +63,46 @@ namespace ExcelToWordProject.Syllabus
                 // получаем все модули
                 List<Module> modules = SyllabusExcelReader.GetAllModules(Parameters.ModulesYears);
                 int i = 0;
-                foreach(Module module in modules) 
+                using (SubjectContext sb = new SubjectContext())
                 {
-                    // Репортим прогресс
-                    i++;
-                    if (progress != null)
-                        progress.Report(i * 100 / modules.Count());
+                    foreach (Module module in modules)
+                    {
+                        // Репортим прогресс
+                        foreach (var item in module.ContentIndexes)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        //if (module.Name.Length < 50)
+                        //{
+                        //sb.Add(module.Name);
 
-                    // Приготовим имя и путь к файлу
-                    string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix + module.Index + " " + module.Name + ".docx");
-                    safeName = PathUtils.FixFileNameLimit(safeName);
-                    string resultFilePath = Path.Combine(resultFolderPath, safeName);
+                        //}
 
-                    // Создадим новый файл с результатом
-                    DocX doc = PathUtils.CopyFile(baseDocumentPath, resultFilePath);
-                    if (doc == null)
-                        continue;
+                        //    i++;
+                        //if (progress != null)
+                        //    progress.Report(i * 100 / modules.Count());
 
-                    // Обработаем данный модуль
-                    ModuleHandler(doc, module, hasSmartModulesContentTags);
-                   
-                    // Сохраняем файл
-                    doc.Save();
-                    doc.Dispose();
+                        // Приготовим имя и путь к файлу
+                        //string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix + module.Index + " " + module.Name + ".docx");
+                        //safeName = PathUtils.FixFileNameLimit(safeName);
+                        //string resultFilePath = Path.Combine(resultFolderPath, safeName);
+
+                        // Создадим новый файл с результатом
+                        //DocX doc = PathUtils.CopyFile(baseDocumentPath, resultFilePath);
+                        //if (doc == null)
+                        //    continue;
+
+                        //// Обработаем данный модуль
+                        //ModuleHandler(doc, module, hasSmartModulesContentTags);
+
+                        //// Сохраняем файл
+                        //doc.Save();
+                        //doc.Dispose();
+                    }
+                        sb.SaveChanges();
+
                 }
+
             }
             else // просто заменяем теги
             {
@@ -93,21 +110,21 @@ namespace ExcelToWordProject.Syllabus
                 string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix +".docx");
                 string resultFilePath = Path.Combine(resultFolderPath, safeName);
                 baseDocument.SaveAs(resultFilePath);
-                DocX doc = DocX.Load(resultFilePath);
+                //DocX doc = DocX.Load(resultFilePath);
 
-                TablesHandler(doc);
-                // бежим по списку тегов
-                foreach (BaseSyllabusTag tag in Parameters.Tags)
-                {
-                    // и заполняем каждый активный тег
-                    if (tag is DefaultSyllabusTag && tag.Active)
-                        doc.ReplaceText(tag.Tag, tag.GetValue(excelData:SyllabusExcelReader.ExcelData));
+                //TablesHandler(doc);
+                //// бежим по списку тегов
+                //foreach (BaseSyllabusTag tag in Parameters.Tags)
+                //{
+                //    // и заполняем каждый активный тег
+                //    if (tag is DefaultSyllabusTag && tag.Active)
+                //        doc.ReplaceText(tag.Tag, tag.GetValue(excelData:SyllabusExcelReader.ExcelData));
 
-                }
-                doc.Save();
-                doc.Dispose();
-                if (progress != null)
-                    progress.Report(100);
+                //}
+                //doc.Save();
+                //doc.Dispose();
+                //if (progress != null)
+                //    progress.Report(100);
             }
         }
 
