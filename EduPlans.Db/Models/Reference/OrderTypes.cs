@@ -11,7 +11,7 @@ namespace EduPlans.Db.Models
     public class OrderTypes
     {
         public int Id { get; set; }
-        public string type { get; set; }
+        public string Type { get; set; }
 
     }
 
