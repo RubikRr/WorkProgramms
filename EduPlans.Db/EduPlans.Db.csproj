@@ -96,11 +96,20 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DbMySqlConnection.cs" />
-    <Compile Include="EduFormContext.cs" />
-    <Compile Include="Models\EduForm.cs" />
+    <Compile Include="Models\Reference\Block.cs" />
+    <Compile Include="Models\Reference\Competence.cs" />
+    <Compile Include="Models\Reference\EduLevel.cs" />
+    <Compile Include="Models\Reference\FormControl.cs" />
+    <Compile Include="Models\Reference\OrderType.cs" />
+    <Compile Include="Models\Reference\Speciality.cs" />
+    <Compile Include="Models\Reference\SubjectForm.cs" />
+    <Compile Include="Сontexts\Reference\CompetenceContext.cs" />
+    <Compile Include="Сontexts\Reference\EduFormContext.cs" />
+    <Compile Include="Models\Reference\EduForm.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SubjectContext.cs" />
+    <Compile Include="Сontexts\Reference\EduLevelContext.cs" />
+    <Compile Include="Сontexts\SubjectContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

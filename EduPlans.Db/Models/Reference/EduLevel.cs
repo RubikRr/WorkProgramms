@@ -5,14 +5,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EduPlans.Db.Models
+namespace EduPlans.Db.Models.Reference
 {
-    [Table("order_types")]
-    public class OrderTypes
+    [Table("edu_levels")]
+    public class EduLevel
     {
         public int Id { get; set; }
-        public string Type { get; set; }
+        public string Title { get; set; }
 
+        public Byte Level { get; set; }
     }
-
 }

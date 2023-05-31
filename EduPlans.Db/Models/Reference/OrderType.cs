@@ -7,10 +7,12 @@ using System.Threading.Tasks;
 
 namespace EduPlans.Db.Models
 {
-    [Table("subject_forms")]
-    public class SubjectForms
+    [Table("order_types")]
+    public class OrderType
     {
         public int Id { get; set; }
-        public string Title { get; set; }
+        public string Type { get; set; }
+
     }
+
 }
