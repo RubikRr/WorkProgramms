@@ -28,7 +28,7 @@ namespace EduPlans.Db
             var subject = new Subject { Title=name};
             Subjects.Add(subject);
         }
-
+       
        
 
     }
