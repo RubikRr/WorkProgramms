@@ -15,6 +15,6 @@ namespace EduPlans.Db.Models.Reference
         public string Code { get; set; }
         public string Profile { get; set; }
         [Column("edu_level_id")]
-        public EduLevel EduLevelId { get; set; }
+        public int EduLevelId { get; set; }
     }
 }

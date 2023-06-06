@@ -13,6 +13,6 @@ namespace EduPlans.Db.Models.Reference
         public int Id { get; set; }
         public string Title { get; set; }
 
-        public Byte Level { get; set; }
+        public int Level { get; set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlX.XDevAPI.Relational;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -13,5 +14,7 @@ namespace EduPlans.Db.Models
         public int Id { get; set; }
         public string Code { get; set; }
         public string Description { get; set; }
+        [Column("speciality_id")]
+        public int specialityId { get; set; }
     }
 }
