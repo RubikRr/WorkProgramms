@@ -15,6 +15,14 @@ namespace EduPlans.Db.Models
         public string Code { get; set; }
         public string Description { get; set; }
         [Column("speciality_id")]
-        public int specialityId { get; set; }
+        public int SpecialityId { get; set; }
+
+
+        public Competence( string code, string descpription, int specialityId = 0)
+        {
+            Code = code;
+            Description = descpription;
+            SpecialityId = specialityId;
+        }
     }
 }

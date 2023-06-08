@@ -14,5 +14,10 @@ namespace EduPlans.Db.Сontexts.Reference
 
         public BlockContext() : base("EduPlansDb"){ }
 
+        public void Add(Block block)
+        {
+            Blocks.Add(block);
+        }
+
     }
 }

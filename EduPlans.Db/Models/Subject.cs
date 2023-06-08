@@ -10,5 +10,10 @@ namespace EduPlans.Db.Models
     {
         public int Id { get; set; }
         public string Title{ get; set; }
+
+        public Subject(string title)
+        {
+            Title = title;
+        }
     }
 }

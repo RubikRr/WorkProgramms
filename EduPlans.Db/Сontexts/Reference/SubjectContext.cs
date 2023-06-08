@@ -23,13 +23,21 @@ namespace EduPlans.Db
 
         public SubjectContext(DbConnection connection, bool contextOwnConnection) : base(connection, contextOwnConnection) { }
 
-        public void Add(string name)
+        public void Add(string subjectTitle)
         {
-            var subject = new Subject { Title=name};
-            Subjects.Add(subject);
+            if (subjectTitle.Trim() == "") // если пусто, то пропускаем
+                return;
+            var subject = new Subject(subjectTitle);
+            if (!Subjects.Any(s => s.Title == subject.Title))
+                Subjects.Add(subject);
         }
-       
-       
 
-    }
+        public void Add(Subject subject)
+        {
+            if (subject.Title.Trim() == "") // если пусто, то пропускаем
+                return;
+            if (!Subjects.Any(s => s.Title == subject.Title))
+                Subjects.Add(subject);
+        }
+    }   
 }

@@ -1,4 +1,7 @@
-﻿using ExcelDataReader;
+﻿using EduPlans.Db;
+using EduPlans.Db.Models;
+using EduPlans.Db.Сontexts.Reference;
+using ExcelDataReader;
 using ExcelToWordProject.Models;
 using ExcelToWordProject.Utils;
 using System;
@@ -9,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
+using Xceed.Document.NET;
 
 namespace ExcelToWordProject.Syllabus
 {
@@ -17,7 +21,10 @@ namespace ExcelToWordProject.Syllabus
         /// <summary>
         /// Является ли данный файл файлом расписания.
         /// </summary>
-        public bool IsSyllabusFile { get {
+        public bool IsSyllabusFile
+        {
+            get
+            {
                 try
                 {
                     string flagValue = ExcelData.Tables[0].Rows[11][8] as string ?? "";
@@ -32,7 +39,10 @@ namespace ExcelToWordProject.Syllabus
 
         public string FilePath { get; }
         public DataSet ExcelData; // ExcelData.Tables["Name"].Rows[11][0] - пример
+
         SyllabusParameters Parameters;
+
+
         IExcelDataReader excelStream;
         FileStream fileStream;
 
@@ -44,6 +54,63 @@ namespace ExcelToWordProject.Syllabus
 
         }
 
+        public void ParseSubjects()
+        {
+            SmartSyllabusTag moduleNameTag =
+              Parameters.Tags.Find(
+                  tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.ModuleName) as SmartSyllabusTag;
+
+            ExcelTableList list = new ExcelTableList(Parameters.PlanListName, ExcelData, Parameters.PlanListHeaderRowIndex);
+
+            using (SubjectContext sc = new SubjectContext())
+            {
+                for (int i = Parameters.PlanListHeaderRowIndex + 1; i < list.RowsCount; i++)
+                {
+                    string subjectTitle = list.GetCellValue(i, moduleNameTag.ColumnIndex);
+                    sc.Add(subjectTitle);
+                }
+                sc.SaveChanges();
+                Console.WriteLine("Ураааааааааааа все предметы спарсил");
+            }
+        }
+
+        public void ParseCompetencies()
+        {
+            
+            ExcelTableList list = new ExcelTableList(Parameters.ModulesContentListName, ExcelData, Parameters.PlanListHeaderRowIndex);
+
+
+            SmartSyllabusTag contentIndexTag =
+               Parameters.Tags.Find(
+                   tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.ContentIndex) as SmartSyllabusTag;
+
+            SmartSyllabusTag contentDescriptionTag =
+                Parameters.Tags.Find(
+                    tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.Content) as SmartSyllabusTag;
+
+            
+
+            List<Competence> contentList = new List<Competence>();
+
+            var rows = ExcelData.Tables[contentDescriptionTag.ListName].Rows;
+            using (CompetenceContext cc = new CompetenceContext())
+            {
+
+                for (int i = 2; i < rows.Count; i++)
+                {
+                    var s = list.GetCellValue(i, contentDescriptionTag.ColumnIndex + 1);
+                    if (s.Trim() != "")
+                    {
+                        string index = list.GetCellValue(i, contentIndexTag.ColumnIndex);
+                        string description = list.GetCellValue(i, contentDescriptionTag.ColumnIndex);
+                        cc.Add(new Competence(index, description));
+                    }
+                }
+              
+                cc.SaveChanges();
+            }
+
+        }
         public void CloseStreams()
         {
             if (excelStream != null)
@@ -76,7 +143,8 @@ namespace ExcelToWordProject.Syllabus
             if (years.Length == 0)
                 return allModules;
 
-            List<Module> result = allModules.FindAll(module => {
+            List<Module> result = allModules.FindAll(module =>
+            {
                 bool contains = false;
                 foreach (int year in module.Properties.Years)
                 {
@@ -116,14 +184,14 @@ namespace ExcelToWordProject.Syllabus
             // Поиск
             ExcelTableList list = new ExcelTableList(Parameters.PlanListName, ExcelData, Parameters.PlanListHeaderRowIndex);
 
-            for (int i = Parameters.PlanListHeaderRowIndex+1; i < list.RowsCount; i++)
+            for (int i = Parameters.PlanListHeaderRowIndex + 1; i < list.RowsCount; i++)
             {
                 // Имя модуля
                 string moduleName = list.GetCellValue(i, moduleNameTag.ColumnIndex);
 
                 if (moduleName.Trim() == "") // если пусто, то пропускаем
                     continue;
-                
+
                 // Индекс модуля 
                 string moduleIndex = list.GetCellValue(i, moduleIndexTag.ColumnIndex);
 
@@ -227,7 +295,7 @@ namespace ExcelToWordProject.Syllabus
                 string val = (rows[rowIndex][controlTag.ColumnIndex + i] as string) ?? "";
                 properties.ControlFormsBySemesters[controlForm] = new List<int>();
                 if (val != "")
-                    properties.ControlFormsBySemesters[controlForm].AddRange(OtherUtils.StrToListInt(val).Distinct().ToList());  
+                    properties.ControlFormsBySemesters[controlForm].AddRange(OtherUtils.StrToListInt(val).Distinct().ToList());
             }
 
             // Будет ли курсовая работа
@@ -263,7 +331,7 @@ namespace ExcelToWordProject.Syllabus
             // Количество часов на контроль (по семестрам)
             tempList = planList.GetCellValue(rowIndex, Parameters.planListHeaderNames["ControlHoursHeaderName"]);
             properties.ControlHoursBySemesters = tempList.ConvertAll(el => OtherUtils.StrToInt(el));
-            properties.ControlHoursBySemesters = 
+            properties.ControlHoursBySemesters =
                 properties.ControlHoursBySemesters.GetRange(1, properties.ControlHoursBySemesters.Count() - 1);
 
             // Количество часов на самостоятельную работу (по семестрам)
@@ -304,6 +372,7 @@ namespace ExcelToWordProject.Syllabus
             SmartSyllabusTag tag =
                 Parameters.Tags.Find(
                     tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.Content) as SmartSyllabusTag;
+
             List<Content> contentList = new List<Content>();
 
             var rows = ExcelData.Tables[tag.ListName].Rows;
