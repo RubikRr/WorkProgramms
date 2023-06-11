@@ -172,6 +172,7 @@
     <Compile Include="Components\MyTreeView.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="Utils\Extenisons\ListToString.cs" />
     <Compile Include="Forms\DefaultTagSettingsForm.cs">
       <SubType>Form</SubType>
     </Compile>

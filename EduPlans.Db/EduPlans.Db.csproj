@@ -113,8 +113,11 @@
     <Compile Include="Сontexts\Reference\CompetenceContext.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Сontexts\Reference\DepartmentContext.cs" />
     <Compile Include="Сontexts\Reference\EduLevelContext.cs" />
+    <Compile Include="Сontexts\Reference\SpecialityContext.cs" />
     <Compile Include="Сontexts\Reference\SubjectContext.cs" />
+    <Compile Include="Сontexts\Reference\TitlePlanContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
