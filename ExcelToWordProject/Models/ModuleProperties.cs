@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ExcelToWordProject.Extenisons;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,11 +10,12 @@ namespace ExcelToWordProject.Models
 {
     public class ModuleProperties
     {
-        public int TotalLessonsHours { get => TotalLecturesHours + TotalPracticalLessonsHours + TotalLaboratoryLessonsHours; } // Итого аудиторных занятий
+        public int TotalLessonsHours { get => TotalLecturesHours + TotalPracticalLessonsHours + TotalLaboratoryLessonsHours; } // Итого аудиторных занятий +
 
         public List<int> TotalLessonsHoursBySemesters
         {
-            get {
+            get
+            {
                 List<int> result = new List<int>(LecturesHoursBySemesters);
                 for (int i = 0; i < LecturesHoursBySemesters.Count; i++)
                     result[i] += PracticalLessonsHoursBySemesters[i] + LaboratoryLessonsHoursBySemesters[i];
@@ -36,11 +38,11 @@ namespace ExcelToWordProject.Models
             }
         }
 
-        public int TotalLecturesHours { get => LecturesHoursBySemesters.Sum(); }
-        public int TotalPracticalLessonsHours { get => PracticalLessonsHoursBySemesters.Sum(); }
-        public int TotalLaboratoryLessonsHours { get => LaboratoryLessonsHoursBySemesters.Sum(); }
-        public int TotalIndependentWorkHours { get => IndependentWorkHoursBySemesters.Sum(); }
-        public int TotalControlHours { get => ControlHoursBySemesters.Sum(); }
+        public int TotalLecturesHours { get => LecturesHoursBySemesters.Sum(); }//+
+        public int TotalPracticalLessonsHours { get => PracticalLessonsHoursBySemesters.Sum(); }//+
+        public int TotalLaboratoryLessonsHours { get => LaboratoryLessonsHoursBySemesters.Sum(); }//+
+        public int TotalIndependentWorkHours { get => IndependentWorkHoursBySemesters.Sum(); }//+
+        public int TotalControlHours { get => ControlHoursBySemesters.Sum(); }//+
 
         public List<ControlForm> Control
         {
@@ -74,7 +76,7 @@ namespace ExcelToWordProject.Models
         public List<int> Semesters = new List<int>();
 
         // Соответсвие между формой контроля и перечислением семестров
-        public Dictionary<ControlForm, List<int>> ControlFormsBySemesters 
+        public Dictionary<ControlForm, List<int>> ControlFormsBySemesters
                                     = new Dictionary<ControlForm, List<int>>() {
                                         { ControlForm.Credit, new List<int>() },
                                         { ControlForm.Exam, new List<int>() },
@@ -98,7 +100,36 @@ namespace ExcelToWordProject.Models
             PartName = partName;
             CreditUnits = creditUnits;
         }
+
+
+
+        public override string ToString()
+        {
+            return $"Итого аудиторных занятий:{this.TotalLessonsHours}\n" +
+                $"Итого лекций:{this.TotalLecturesHours}\n" +
+                $"Итого практики:{this.TotalPracticalLessonsHours}\n" +
+                $"Итого лаб:{this.TotalLaboratoryLessonsHours}\n" +
+                $"Итого самост-ой работы:{this.TotalIndependentWorkHours}\n" +
+                $"Итого Контрольных:{this.TotalControlHours}\n" +
+                $"Курсы на которых предмет проводят:{Years.InLine()}\n" +
+                $"Всего аудиторных занятий по семестрам:{TotalLessonsHoursBySemesters.InLine()}\n" +
+                $"Лекции по семестрам:{LecturesHoursBySemesters.InLine()}\n" +
+                $"Практики по семестрам:{PracticalLessonsHoursBySemesters.InLine()}\n" +
+                $"Лабы по семестрам:{LaboratoryLessonsHoursBySemesters.InLine()}\n" +
+                $"Самост. работа по семестрам:{IndependentWorkHoursBySemesters.InLine()}\n" +
+                $"Контрольных по семестрам{ControlHoursBySemesters.InLine()}\n" +
+                $"Семестры:{Semesters.InLine()}\n" +
+                $"Всего часов по плану:{TotalHoursByPlan}\n" +
+                $"Номер блока:{BlockNumber}\n" +
+                $"Название блока:{BlockName}\n" +
+                $"PartName:{PartName}\n" +
+                $"CreditUnits:{CreditUnits}\n" +
+                $"Название кафедры:{DepartmentName}\n" +
+                $"Есть курсовая работа или нет:{isCourseWork}\n";
+        }
     }
+
+
 
     // Формы контроля: Экзамен, Зачет, Зачет с оценкой
     public enum ControlForm { Exam, Credit, GradedCredit, Error }
