@@ -57,59 +57,82 @@ namespace ExcelToWordProject.Syllabus
             {
                 // Есть ли смарт-теги, работающие со списком компетенций
                 bool hasSmartModulesContentTags =
-                    Parameters.Tags.FindIndex(el => 
+                    Parameters.Tags.FindIndex(el =>
                     el is SmartSyllabusTag && el.ListName == Parameters.ModulesContentListName) != -1;
+
+
+                //SyllabusExcelReader.ParseSubjects();
+                //SyllabusExcelReader.ParseCompetencies();
+                //SyllabusExcelReader.ParseDepartments();
+                SyllabusExcelReader.ParseTitle();
+
+
+
 
                 // получаем все модули
                 List<Module> modules = SyllabusExcelReader.GetAllModules(Parameters.ModulesYears);
                 int i = 0;
-                using (SubjectContext sb = new SubjectContext())
+
+
+                foreach (Module module in modules)
                 {
-                    foreach (Module module in modules)
-                    {
-                        // Репортим прогресс
-                        foreach (var item in module.ContentIndexes)
-                        {
-                            Console.WriteLine(item);
-                        }
-                        //if (module.Name.Length < 50)
-                        //{
-                        //sb.Add(module.Name);
+                    //Console.WriteLine($"{module.Index} {module.Name}");
+                    ////foreach (var item in module.ContentIndexes)
+                    ////{
+                    ////    Console.Write($"{item} ");
+                    ////}
 
-                        //}
+                    //Console.WriteLine();
+                    //Console.WriteLine($"{module.Properties}");
+                    //Console.WriteLine("Компетенции");
+                    //List<Content> contentList = null;
+                    //if (hasSmartModulesContentTags)
+                    //    contentList = SyllabusExcelReader.ParseContentList(module);
 
-                        //    i++;
-                        //if (progress != null)
-                        //    progress.Report(i * 100 / modules.Count());
+                    //foreach (var item in contentList)
+                    //{
+                    //    Console.WriteLine($"{item.Index} {item.Value}");
+                    //}
+                    //Console.WriteLine();
+                    //if (module.Name.Length < 50)
+                    //{
+                    //sb.Add(module.Name);
 
-                        // Приготовим имя и путь к файлу
-                        //string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix + module.Index + " " + module.Name + ".docx");
-                        //safeName = PathUtils.FixFileNameLimit(safeName);
-                        //string resultFilePath = Path.Combine(resultFolderPath, safeName);
+                    //}
 
-                        // Создадим новый файл с результатом
-                        //DocX doc = PathUtils.CopyFile(baseDocumentPath, resultFilePath);
-                        //if (doc == null)
-                        //    continue;
+                    //    i++;
+                    //if (progress != null)
+                    //    progress.Report(i * 100 / modules.Count());
 
-                        //// Обработаем данный модуль
-                        //ModuleHandler(doc, module, hasSmartModulesContentTags);
+                    // Приготовим имя и путь к файлу
+                    //string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix + module.Index + " " + module.Name + ".docx");
+                    //safeName = PathUtils.FixFileNameLimit(safeName);
+                    //string resultFilePath = Path.Combine(resultFolderPath, safeName);
 
-                        //// Сохраняем файл
-                        //doc.Save();
-                        //doc.Dispose();
-                    }
-                        sb.SaveChanges();
+                    // Создадим новый файл с результатом
+                    //DocX doc = PathUtils.CopyFile(baseDocumentPath, resultFilePath);
+                    //if (doc == null)
+                    //    continue;
+
+                    //// Обработаем данный модуль
+                    //ModuleHandler(doc, module, hasSmartModulesContentTags);
+
+                    //// Сохраняем файл
+                    //doc.Save();
+                    //doc.Dispose();
+                    //}
+                    //    sb.SaveChanges();
 
                 }
-
             }
+
+
             else // просто заменяем теги
             {
-                fileNamePrefix = fileNamePrefix == "" ? "UnsetFileName" : fileNamePrefix;
-                string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix +".docx");
-                string resultFilePath = Path.Combine(resultFolderPath, safeName);
-                baseDocument.SaveAs(resultFilePath);
+                //    fileNamePrefix = fileNamePrefix == "" ? "UnsetFileName" : fileNamePrefix;
+                //    string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix +".docx");
+                //    string resultFilePath = Path.Combine(resultFolderPath, safeName);
+                //    baseDocument.SaveAs(resultFilePath);
                 //DocX doc = DocX.Load(resultFilePath);
 
                 //TablesHandler(doc);
