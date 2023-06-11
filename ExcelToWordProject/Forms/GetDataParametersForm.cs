@@ -32,6 +32,9 @@ namespace ExcelToWordProject.Forms
             planListNameTextBox.Text = SyllabusParameters.PlanListName;
             modulesContentListNameTextBox.Text = SyllabusParameters.ModulesContentListName;
 
+            departmentsListName.Text = SyllabusParameters.DepartmentListName;
+
+
             planHeaderTitlesPanel.Controls.AddRange(GeneratePlanHeaderTitleSettings());
 
             planHeaderRowIndexTextBox.Text = syllabusParameters.PlanListHeaderRowIndex.ToString();
@@ -193,6 +196,6 @@ namespace ExcelToWordProject.Forms
             Dispose();
         }
 
-       
+      
     }
 }

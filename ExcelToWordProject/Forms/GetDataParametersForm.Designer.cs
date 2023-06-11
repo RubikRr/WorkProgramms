@@ -42,6 +42,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.planHeaderRowIndexTextBox = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.departmentsListName = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
@@ -94,7 +96,7 @@
             // SaveAndQuitButton
             // 
             this.SaveAndQuitButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.SaveAndQuitButton.Location = new System.Drawing.Point(291, 460);
+            this.SaveAndQuitButton.Location = new System.Drawing.Point(291, 545);
             this.SaveAndQuitButton.Margin = new System.Windows.Forms.Padding(4);
             this.SaveAndQuitButton.Name = "SaveAndQuitButton";
             this.SaveAndQuitButton.Size = new System.Drawing.Size(280, 41);
@@ -107,6 +109,8 @@
             // 
             this.groupBox2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.departmentsListName);
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.modulesContentListNameTextBox);
             this.groupBox2.Controls.Add(this.label4);
@@ -114,14 +118,13 @@
             this.groupBox2.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.groupBox2.Location = new System.Drawing.Point(12, 119);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(559, 85);
+            this.groupBox2.Size = new System.Drawing.Size(559, 148);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Имена листов";
             // 
             // label3
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.label3.Location = new System.Drawing.Point(276, 22);
@@ -132,7 +135,6 @@
             // 
             // modulesContentListNameTextBox
             // 
-            this.modulesContentListNameTextBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.modulesContentListNameTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.modulesContentListNameTextBox.Location = new System.Drawing.Point(279, 48);
             this.modulesContentListNameTextBox.Name = "modulesContentListNameTextBox";
@@ -164,16 +166,16 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.planHeaderTitlesPanel.AutoScroll = true;
             this.planHeaderTitlesPanel.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.planHeaderTitlesPanel.Location = new System.Drawing.Point(12, 279);
+            this.planHeaderTitlesPanel.Location = new System.Drawing.Point(12, 356);
             this.planHeaderTitlesPanel.Name = "planHeaderTitlesPanel";
-            this.planHeaderTitlesPanel.Size = new System.Drawing.Size(559, 174);
+            this.planHeaderTitlesPanel.Size = new System.Drawing.Size(559, 182);
             this.planHeaderTitlesPanel.TabIndex = 4;
             // 
             // label5
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label5.Location = new System.Drawing.Point(8, 222);
+            this.label5.Location = new System.Drawing.Point(17, 293);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(227, 19);
             this.label5.TabIndex = 5;
@@ -182,7 +184,7 @@
             // planHeaderRowIndexTextBox
             // 
             this.planHeaderRowIndexTextBox.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.planHeaderRowIndexTextBox.Location = new System.Drawing.Point(214, 244);
+            this.planHeaderRowIndexTextBox.Location = new System.Drawing.Point(223, 315);
             this.planHeaderRowIndexTextBox.Name = "planHeaderRowIndexTextBox";
             this.planHeaderRowIndexTextBox.Size = new System.Drawing.Size(67, 26);
             this.planHeaderRowIndexTextBox.TabIndex = 6;
@@ -191,17 +193,35 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.label6.Location = new System.Drawing.Point(9, 247);
+            this.label6.Location = new System.Drawing.Point(18, 318);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(199, 18);
             this.label6.TabIndex = 7;
             this.label6.Text = "Индекс строки заголовков";
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label7.Location = new System.Drawing.Point(6, 90);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(142, 18);
+            this.label7.TabIndex = 5;
+            this.label7.Text = "Лист с кафедрами";
+            // 
+            // departmentsListName
+            // 
+            this.departmentsListName.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.departmentsListName.Location = new System.Drawing.Point(9, 116);
+            this.departmentsListName.Name = "departmentsListName";
+            this.departmentsListName.Size = new System.Drawing.Size(264, 26);
+            this.departmentsListName.TabIndex = 4;
+            // 
             // GetDataParametersForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(584, 514);
+            this.ClientSize = new System.Drawing.Size(584, 599);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.planHeaderRowIndexTextBox);
             this.Controls.Add(this.label5);
@@ -240,5 +260,7 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox planHeaderRowIndexTextBox;
         private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox departmentsListName;
     }
 }

@@ -1,4 +1,5 @@
 ﻿using EduPlans.Db;
+using EduPlans.Db.Сontexts.Reference;
 using ExcelToWordProject.Forms;
 using ExcelToWordProject.Models;
 using ExcelToWordProject.Syllabus;
@@ -240,31 +241,12 @@ namespace ExcelToWordProject
 
         private void button1_Click(object sender, EventArgs e)
         {
-
-
-
-            using (MySqlConnection connection =DbMySqlConnection.GetConnection() )
+            using (EduLevelContext context = new EduLevelContext())
             {
-                connection.Open();
-                using (var context = new SubjectContext(connection, false))
+                foreach (var lvl in context.EduLevels)
                 {
-                    context.Add("Физра");
-                    context.SaveChanges();
-
-
-                    context.SaveChanges();
-
+                    Console.WriteLine($"{lvl.Id} {lvl.Title} {lvl.Level}");
                 }
-
-                using (var context = new EduFormContext(connection, false))
-                {
-                    context.Add("Английский язык");
-                    context.SaveChanges();
-
-
-
-                }
-
             }
         }
     }

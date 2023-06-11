@@ -55,7 +55,6 @@
             this.filePathTextBox = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.status = new System.Windows.Forms.ToolStripStatusLabel();
-            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.bodyPanel.SuspendLayout();
             this.bodyGroupBox.SuspendLayout();
@@ -137,7 +136,6 @@
             // 
             // bodyGroupBox
             // 
-            this.bodyGroupBox.Controls.Add(this.button1);
             this.bodyGroupBox.Controls.Add(this.excelFilesLabelClear);
             this.bodyGroupBox.Controls.Add(this.excelFilesLabel);
             this.bodyGroupBox.Controls.Add(this.progressBar1);
@@ -252,6 +250,8 @@
             this.templateFilePathTextBox.Name = "templateFilePathTextBox";
             this.templateFilePathTextBox.Size = new System.Drawing.Size(542, 26);
             this.templateFilePathTextBox.TabIndex = 7;
+            this.templateFilePathTextBox.Text = "C:\\Users\\vovac\\OneDrive\\Рабочий стол\\Курсач\\Tests\\Рабочая программа (шаблон).docx" +
+    "";
             // 
             // convertButton
             // 
@@ -353,16 +353,6 @@
             this.status.Size = new System.Drawing.Size(73, 17);
             this.status.Text = "Ожидание...";
             // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(275, 258);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
-            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -421,7 +411,6 @@
         private System.Windows.Forms.ToolStripMenuItem оПрограммеToolStripMenuItem;
         private System.Windows.Forms.LinkLabel excelFilesLabelClear;
         private System.Windows.Forms.Label excelFilesLabel;
-        private System.Windows.Forms.Button button1;
     }
 }
 
