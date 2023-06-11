@@ -27,6 +27,7 @@ namespace ExcelToWordProject.Utils
             SyllabusParameters settings;
             try
             {
+                Console.WriteLine(ConfigPath);
                 using (Stream stream = new FileStream(ConfigPath, FileMode.Open))
                 {
                     XmlSerializer serializer = new XmlSerializer(typeof(SyllabusParameters));
