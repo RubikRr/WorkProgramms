@@ -5,7 +5,9 @@ using ExcelDataReader;
 using ExcelToWordProject.Models;
 using ExcelToWordProject.Utils;
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Data;
 using System.IO;
 using System.Linq;
@@ -111,6 +113,61 @@ namespace ExcelToWordProject.Syllabus
             }
 
         }
+
+        public void ParseDepartments()
+        {
+
+            var tag = Parameters.Tags.Find(
+                    tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.DepartmentNameNotInPlan) as SmartSyllabusTag;
+
+
+            var list = new ExcelTableList(tag.ListName, ExcelData);
+
+            var rows = ExcelData.Tables[tag.ListName].Rows;
+            using (DepartmentContext dc=new DepartmentContext())
+            {
+                for (int i = 2; i < rows.Count; i++)
+                {
+                    string departmentTitle = list.GetCellValue(i, tag.ColumnIndex);
+                    Depatment department = new Depatment(departmentTitle);
+                    dc.Add(department);
+                    Console.WriteLine($"{department.Title} {department.HeadId} {department.FacultyId}");
+                }
+
+                dc.SaveChanges();
+            }
+            
+        }
+
+        public void ParseTitle()
+        {
+            
+            var directionCodeTag = Parameters.Tags.Find(tag => tag.Key == "DirectionCode") as DefaultSyllabusTag;
+            var programValueTag = Parameters.Tags.Find(tag => tag.Key == "ProgramValue") as DefaultSyllabusTag;
+            var protocolInfoDateTag = Parameters.Tags.Find(tag => tag.Key == "ProtocolInfoDate") as DefaultSyllabusTag;
+            var protocolInfoNumberTag = Parameters.Tags.Find(tag => tag.Key == "ProtocolInfoNumber") as DefaultSyllabusTag;
+            var dateEnterTag = Parameters.Tags.Find(tag => tag.Key == "DateEnter") as DefaultSyllabusTag;
+            var educationalStandardDateTag = Parameters.Tags.Find(tag => tag.Key == "EducationalStandardDate") as DefaultSyllabusTag;
+            var educationalStandardNumberTag = Parameters.Tags.Find(tag => tag.Key == "EducationalStandardNumber") as DefaultSyllabusTag;
+            var departmentFromTitleTag = Parameters.Tags.Find(tag => tag.Key == "DepartmentFromTitle") as DefaultSyllabusTag;
+
+
+            var directionCode = directionCodeTag.GetValue(null, null, ExcelData);
+            var programValue = programValueTag.GetValue(null, null, ExcelData);
+            var protocolInfoDate = DateTime.Parse(protocolInfoDateTag.GetValue(null, null, ExcelData));
+            var protocolInfoNumber = int.Parse(protocolInfoNumberTag.GetValue(null, null, ExcelData));
+            var educationalStandardDate = DateTime.Parse(educationalStandardDateTag.GetValue(null, null, ExcelData));
+            var educationalStandardNumber = int.Parse(educationalStandardNumberTag.GetValue(null, null, ExcelData));
+            var dateEnter = int.Parse(dateEnterTag.GetValue(null, null, ExcelData));
+            var departmentFromTitle = departmentFromTitleTag.GetValue(null, null, ExcelData);
+            var title = new TitlePlan(directionCode, programValue, protocolInfoDate, protocolInfoNumber, dateEnter, educationalStandardDate, educationalStandardNumber, departmentFromTitle, "1");
+            using (TitlePlanContext tpc = new TitlePlanContext())
+            {
+                tpc.Add(title);
+                tpc.SaveChanges();
+            }
+            Console.WriteLine(title.ToString());
+        }
         public void CloseStreams()
         {
             if (excelStream != null)
@@ -173,7 +230,7 @@ namespace ExcelToWordProject.Syllabus
             SmartSyllabusTag moduleIndexTag =
                 Parameters.Tags.Find(
                     tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.ModuleIndex) as SmartSyllabusTag;
-
+            //нот юз
             SmartSyllabusTag moduleContentIndexesTag =
                 Parameters.Tags.Find(
                     tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.ModuleContentIndexes) as SmartSyllabusTag;
