@@ -64,7 +64,7 @@ namespace ExcelToWordProject.Syllabus
                 //SyllabusExcelReader.ParseSubjects();
                 //SyllabusExcelReader.ParseCompetencies();
                 //SyllabusExcelReader.ParseDepartments();
-                SyllabusExcelReader.ParseTitle();
+                //SyllabusExcelReader.ParseTitle();
 
 
 
@@ -76,29 +76,25 @@ namespace ExcelToWordProject.Syllabus
 
                 foreach (Module module in modules)
                 {
-                    //Console.WriteLine($"{module.Index} {module.Name}");
-                    ////foreach (var item in module.ContentIndexes)
-                    ////{
-                    ////    Console.Write($"{item} ");
-                    ////}
-
-                    //Console.WriteLine();
-                    //Console.WriteLine($"{module.Properties}");
-                    //Console.WriteLine("Компетенции");
-                    //List<Content> contentList = null;
-                    //if (hasSmartModulesContentTags)
-                    //    contentList = SyllabusExcelReader.ParseContentList(module);
-
-                    //foreach (var item in contentList)
+                    Console.WriteLine($"{module.Index} {module.Name}");
+                    //foreach (var item in module.ContentIndexes)
                     //{
-                    //    Console.WriteLine($"{item.Index} {item.Value}");
+                    //    Console.Write($"{item} ");
                     //}
-                    //Console.WriteLine();
-                    //if (module.Name.Length < 50)
-                    //{
-                    //sb.Add(module.Name);
 
-                    //}
+                    Console.WriteLine();
+                    Console.WriteLine($"{module.Properties}");
+                    Console.WriteLine("Компетенции");
+                    List<Content> contentList = null;
+                    if (hasSmartModulesContentTags)
+                        contentList = SyllabusExcelReader.ParseContentList(module);
+
+                    foreach (var item in contentList)
+                    {
+                        Console.WriteLine($"{item.Index} {item.Value}");
+                    }
+                    Console.WriteLine();
+
 
                     //    i++;
                     //if (progress != null)

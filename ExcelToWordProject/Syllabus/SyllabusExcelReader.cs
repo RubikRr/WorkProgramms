@@ -116,6 +116,8 @@ namespace ExcelToWordProject.Syllabus
 
         public void ParseDepartments()
         {
+            //var suyl = new SyllabusParameters(true);
+            //ConfigManager.SaveConfigData(suyl);
 
             var tag = Parameters.Tags.Find(
                     tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.DepartmentNameNotInPlan) as SmartSyllabusTag;
@@ -414,6 +416,10 @@ namespace ExcelToWordProject.Syllabus
             tempList = planList.GetCellValue(rowIndex, Parameters.planListHeaderNames["DepartmentName"], false);
             if (tempList.Count >= 2)
                 properties.DepartmentName = tempList[tempList.Count - 1] ?? "";
+
+            tempList = planList.GetCellValue(rowIndex, Parameters.planListHeaderNames["ModuleCode"], false);
+            if (tempList.Count >= 1)
+                properties.ModuleCode = tempList[tempList.Count - 1] ?? "";
 
 
             return properties;

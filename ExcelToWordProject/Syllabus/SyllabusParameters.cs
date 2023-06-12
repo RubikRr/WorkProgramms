@@ -59,6 +59,7 @@ namespace ExcelToWordProject.Syllabus
             planListHeaderNames["TotalHoursByPlanHeaderName"] = "По плану";
             planListHeaderNames["SemesterCountingCreditUnitsPlanHeaderName"] = "з.е.";
             planListHeaderNames["DepartmentName"] = "Наименование";
+            planListHeaderNames["ModuleCode"] = "Код";
             planListHeaderNames["Competitions"] = "Компетенции";
             // заполняем временный массив для сериализации
             tempPlanListHeaderNames = new List<TempDictionaryItem>(planListHeaderNames.Select(kv
@@ -106,6 +107,8 @@ namespace ExcelToWordProject.Syllabus
 
                 new SmartSyllabusTag(1, "ModuleIndex", PlanListName, SmartTagType.ModuleIndex,
                 "Индекс дисциплины. \r\nНапр.: Б1.Б.05"),
+
+                new SmartSyllabusTag(2, "DepartmentNotInPlan", DepartmentListName, SmartTagType.DepartmentNameNotInPlan, "Имя кафедры.\r\nНапр.: Экономики"),
 
                 new SmartSyllabusTag(-1, "Years", PlanListName, SmartTagType.Years, "Курсы, на которых преподается дисциплина.\r\n" +
                 "Напр.: 1, 2, 3"),
@@ -166,6 +169,8 @@ namespace ExcelToWordProject.Syllabus
                 new SmartSyllabusTag(6, "isCourseWork", PlanListName, SmartTagType.isCourseWork, "+ если по предмету есть курсова, иначе -"),
 
                 new SmartSyllabusTag(-1, "DepartmentName", PlanListName, SmartTagType.DepartmentName, "Имя кафедры.\r\nНапр.: Экономики"),
+
+                new SmartSyllabusTag(-1, "ModuleCode", PlanListName, SmartTagType.ModuleCode, "Код дисциплины.\r\nНапр.: 65"),
 
                  new SmartSyllabusTag(2, "DepartmentNotInPlan", DepartmentListName, SmartTagType.DepartmentNameNotInPlan, "Имя кафедры.\r\nНапр.: Экономики"),
 
@@ -441,6 +446,8 @@ namespace ExcelToWordProject.Syllabus
 
                 case SmartTagType.DepartmentName:
                     return properties.DepartmentName;
+                case SmartTagType.ModuleCode:
+                    return properties.ModuleCode;
             }
             return "";
         }
@@ -561,6 +568,7 @@ namespace ExcelToWordProject.Syllabus
         isCourseWork,
         DepartmentName,
         DepartmentNameNotInPlan,
-        ModuleContentIndexes
+        ModuleContentIndexes,
+        ModuleCode
     }
 }

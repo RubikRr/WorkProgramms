@@ -67,6 +67,7 @@ namespace ExcelToWordProject.Models
         public string PartName = "";
         public string CreditUnits = "-1";
         public string DepartmentName = "";
+        public string ModuleCode = "";
 
         public List<int> LecturesHoursBySemesters = new List<int>();
         public List<int> PracticalLessonsHoursBySemesters = new List<int>();
@@ -125,7 +126,8 @@ namespace ExcelToWordProject.Models
                 $"PartName:{PartName}\n" +
                 $"CreditUnits:{CreditUnits}\n" +
                 $"Название кафедры:{DepartmentName}\n" +
-                $"Есть курсовая работа или нет:{isCourseWork}\n";
+                $"Есть курсовая работа или нет:{isCourseWork}\n" +
+                $"Код дисциплины:{ModuleCode}";
         }
     }
 
