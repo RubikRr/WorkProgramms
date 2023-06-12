@@ -60,10 +60,11 @@ namespace ExcelToWordProject.Syllabus
                     Parameters.Tags.FindIndex(el =>
                     el is SmartSyllabusTag && el.ListName == Parameters.ModulesContentListName) != -1;
 
+
                 //SyllabusExcelReader.ParseSubjects();
                 //SyllabusExcelReader.ParseCompetencies();
                 //SyllabusExcelReader.ParseDepartments();
-                //SyllabusExcelReader.ParseTitle();
+                SyllabusExcelReader.ParseTitle();
 
 
 
@@ -75,57 +76,78 @@ namespace ExcelToWordProject.Syllabus
 
                 foreach (Module module in modules)
                 {
+                    //Console.WriteLine($"{module.Index} {module.Name}");
+                    ////foreach (var item in module.ContentIndexes)
+                    ////{
+                    ////    Console.Write($"{item} ");
+                    ////}
 
+                    //Console.WriteLine();
+                    //Console.WriteLine($"{module.Properties}");
+                    //Console.WriteLine("Компетенции");
+                    //List<Content> contentList = null;
+                    //if (hasSmartModulesContentTags)
+                    //    contentList = SyllabusExcelReader.ParseContentList(module);
 
-                    List<Content> contentList = null;
-                    if (hasSmartModulesContentTags)
-                        contentList = SyllabusExcelReader.ParseContentList(module);
+                    //foreach (var item in contentList)
+                    //{
+                    //    Console.WriteLine($"{item.Index} {item.Value}");
+                    //}
+                    //Console.WriteLine();
+                    //if (module.Name.Length < 50)
+                    //{
+                    //sb.Add(module.Name);
 
+                    //}
 
+                    //    i++;
+                    //if (progress != null)
+                    //    progress.Report(i * 100 / modules.Count());
 
-                    i++;
-                    if (progress != null)
-                        progress.Report(i * 100 / modules.Count());
+                    // Приготовим имя и путь к файлу
+                    //string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix + module.Index + " " + module.Name + ".docx");
+                    //safeName = PathUtils.FixFileNameLimit(safeName);
+                    //string resultFilePath = Path.Combine(resultFolderPath, safeName);
 
-                    //Приготовим имя и путь к файлу
-                    string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix + module.Index + " " + module.Name + ".docx");
-                    safeName = PathUtils.FixFileNameLimit(safeName);
-                    string resultFilePath = Path.Combine(resultFolderPath, safeName);
+                    // Создадим новый файл с результатом
+                    //DocX doc = PathUtils.CopyFile(baseDocumentPath, resultFilePath);
+                    //if (doc == null)
+                    //    continue;
 
-                    //Создадим новый файл с результатом
-                   DocX doc = PathUtils.CopyFile(baseDocumentPath, resultFilePath);
-                    if (doc == null)
-                        continue;
+                    //// Обработаем данный модуль
+                    //ModuleHandler(doc, module, hasSmartModulesContentTags);
 
-                    // Обработаем данный модуль
-                    ModuleHandler(doc, module, hasSmartModulesContentTags);
+                    //// Сохраняем файл
+                    //doc.Save();
+                    //doc.Dispose();
+                    //}
+                    //    sb.SaveChanges();
 
-                    // Сохраняем файл
-                    doc.Save();
-                    doc.Dispose();
                 }
             }
+
+
             else // просто заменяем теги
             {
-                fileNamePrefix = fileNamePrefix == "" ? "UnsetFileName" : fileNamePrefix;
-                string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix + ".docx");
-                string resultFilePath = Path.Combine(resultFolderPath, safeName);
-                baseDocument.SaveAs(resultFilePath);
-                DocX doc = DocX.Load(resultFilePath);
+                //    fileNamePrefix = fileNamePrefix == "" ? "UnsetFileName" : fileNamePrefix;
+                //    string safeName = PathUtils.RemoveIllegalFileNameCharacters(fileNamePrefix +".docx");
+                //    string resultFilePath = Path.Combine(resultFolderPath, safeName);
+                //    baseDocument.SaveAs(resultFilePath);
+                //DocX doc = DocX.Load(resultFilePath);
 
-                TablesHandler(doc);
-                // бежим по списку тегов
-                foreach (BaseSyllabusTag tag in Parameters.Tags)
-                {
-                    // и заполняем каждый активный тег
-                    if (tag is DefaultSyllabusTag && tag.Active)
-                        doc.ReplaceText(tag.Tag, tag.GetValue(excelData: SyllabusExcelReader.ExcelData));
+                //TablesHandler(doc);
+                //// бежим по списку тегов
+                //foreach (BaseSyllabusTag tag in Parameters.Tags)
+                //{
+                //    // и заполняем каждый активный тег
+                //    if (tag is DefaultSyllabusTag && tag.Active)
+                //        doc.ReplaceText(tag.Tag, tag.GetValue(excelData:SyllabusExcelReader.ExcelData));
 
-                }
-                doc.Save();
-                doc.Dispose();
-                if (progress != null)
-                    progress.Report(100);
+                //}
+                //doc.Save();
+                //doc.Dispose();
+                //if (progress != null)
+                //    progress.Report(100);
             }
         }
 
