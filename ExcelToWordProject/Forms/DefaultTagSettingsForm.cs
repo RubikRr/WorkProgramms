@@ -38,7 +38,7 @@ namespace ExcelToWordProject
 
             Tags = new List<BaseSyllabusTag>(syllabusParameters.Tags);
 
-            Control[] controls = GenerateSmartTagsSettingsElements(defaultTagsPanel);
+            Control[] controls = GenerateDefaultTagsSettingsElements(defaultTagsPanel);
             
             defaultTagsPanel.Controls.AddRange(controls);
             foreach (Control control in controls)
@@ -46,7 +46,7 @@ namespace ExcelToWordProject
         }
 
 
-        protected Control[] GenerateSmartTagsSettingsElements(Control parent)
+        protected Control[] GenerateDefaultTagsSettingsElements(Control parent)
         {
             List<Control> result = new List<Control>();
 
@@ -56,7 +56,6 @@ namespace ExcelToWordProject
                 if (tag is DefaultSyllabusTag)
                     defaultSyllabusTags.Add(tag as DefaultSyllabusTag);
             });
-
 
             Panel headerPanel = new Panel();
             headerPanel.Height = 20;
@@ -77,15 +76,11 @@ namespace ExcelToWordProject
             }
             result.Add(headerPanel);
 
-
-
             for (int i = 0; i < defaultSyllabusTags.Count(); i++)
             {
                 // текущий тег
                 DefaultSyllabusTag tag = defaultSyllabusTags[i];
-
                 Panel panel = GenerateSmartTagRow(i, tag, parent);
-
                 result.Add(panel);
             }
             return result.ToArray();
