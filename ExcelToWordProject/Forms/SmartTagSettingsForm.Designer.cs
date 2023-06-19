@@ -28,22 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.button = new System.Windows.Forms.Button();
+            this.buttonSave = new System.Windows.Forms.Button();
             this.smartTagsPanel = new System.Windows.Forms.Panel();
             this.tagActivator = new ExcelToWordProject.Components.MyTreeView();
             this.SuspendLayout();
             // 
-            // button
+            // buttonSave
             // 
-            this.button.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button.Location = new System.Drawing.Point(800, 475);
-            this.button.Margin = new System.Windows.Forms.Padding(4);
-            this.button.Name = "button";
-            this.button.Size = new System.Drawing.Size(280, 41);
-            this.button.TabIndex = 1;
-            this.button.Text = "Сохранить и закрыть";
-            this.button.UseVisualStyleBackColor = true;
-            this.button.Click += new System.EventHandler(this.ButtonSave_Click);
+            this.buttonSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSave.Location = new System.Drawing.Point(800, 475);
+            this.buttonSave.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(280, 41);
+            this.buttonSave.TabIndex = 1;
+            this.buttonSave.Text = "Сохранить и закрыть";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.ButtonSave_Click);
             // 
             // smartTagsPanel
             // 
@@ -77,7 +77,7 @@
             this.ClientSize = new System.Drawing.Size(1099, 534);
             this.Controls.Add(this.smartTagsPanel);
             this.Controls.Add(this.tagActivator);
-            this.Controls.Add(this.button);
+            this.Controls.Add(this.buttonSave);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -89,7 +89,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button button;
+        private System.Windows.Forms.Button buttonSave;
         private Components.MyTreeView tagActivator;
         private System.Windows.Forms.Panel smartTagsPanel;
     }
