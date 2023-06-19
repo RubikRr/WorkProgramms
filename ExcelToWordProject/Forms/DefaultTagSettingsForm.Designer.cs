@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.addButton = new System.Windows.Forms.PictureBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.buttonSaveAndExit = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.defaultTagsPanel = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.addButton)).BeginInit();
@@ -49,17 +49,17 @@
             this.addButton.TabStop = false;
             this.addButton.Click += new System.EventHandler(this.AddButton_Click);
             // 
-            // button1
+            // buttonSaveAndExit
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(1182, 455);
-            this.button1.Margin = new System.Windows.Forms.Padding(4);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(270, 42);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "Сохранить и закрыть";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.Button1_Click);
+            this.buttonSaveAndExit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSaveAndExit.Location = new System.Drawing.Point(1182, 455);
+            this.buttonSaveAndExit.Margin = new System.Windows.Forms.Padding(4);
+            this.buttonSaveAndExit.Name = "buttonSaveAndExit";
+            this.buttonSaveAndExit.Size = new System.Drawing.Size(270, 42);
+            this.buttonSaveAndExit.TabIndex = 2;
+            this.buttonSaveAndExit.Text = "Сохранить и закрыть";
+            this.buttonSaveAndExit.UseVisualStyleBackColor = true;
+            this.buttonSaveAndExit.Click += new System.EventHandler(this.ButtonSaveAndExit_Click);
             // 
             // panel1
             // 
@@ -89,7 +89,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1457, 510);
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.buttonSaveAndExit);
             this.Controls.Add(this.addButton);
             this.DoubleBuffered = true;
             this.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
@@ -107,7 +107,7 @@
 
         #endregion
         private System.Windows.Forms.PictureBox addButton;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonSaveAndExit;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel defaultTagsPanel;
     }

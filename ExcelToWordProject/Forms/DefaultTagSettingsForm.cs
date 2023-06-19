@@ -204,7 +204,7 @@ namespace ExcelToWordProject
 
         }
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void ButtonSaveAndExit_Click(object sender, EventArgs e)
         {
             // получим все обычные теги
             List<DefaultSyllabusTag> defaultSyllabusTags = new List<DefaultSyllabusTag>();
