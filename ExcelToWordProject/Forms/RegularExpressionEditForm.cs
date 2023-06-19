@@ -53,10 +53,10 @@ namespace ExcelToWordProject.Forms
             foreach (var item in regexSettings.CheckedItems)
                 tag.RegularEx.RegexOptions |= (RegexOptions)item;
 
-            CancelButton1_Click(sender, e);
+            CancelButton_Click(sender, e);
         }
 
-        private void CancelButton1_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
             Dispose();
@@ -65,7 +65,7 @@ namespace ExcelToWordProject.Forms
         /// <summary>
         /// Проверка регулярного выражения
         /// </summary>
-        /// <param name="sender"></param>
+        /// <param name="sender"></param>В
         /// <param name="e"></param>
         private void TestRegExpButton_Click(object sender, EventArgs e)
         {
