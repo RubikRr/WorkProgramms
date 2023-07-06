@@ -367,7 +367,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MinimumSize = new System.Drawing.Size(642, 441);
             this.Name = "MainForm";
-            this.Text = "Граббер данных из Excel";
+            this.Text = "ExcelToDBToWord";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.bodyPanel.ResumeLayout(false);

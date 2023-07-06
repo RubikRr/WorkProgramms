@@ -207,7 +207,7 @@ namespace ExcelToWordProject
         }
 
 
-        private void Button1_Click(object sender, EventArgs e)
+        private void ButtonSave_Click(object sender, EventArgs e)
         {
             // получим все смарт теги
             List<SmartSyllabusTag> smartSyllabusTags = new List<SmartSyllabusTag>();

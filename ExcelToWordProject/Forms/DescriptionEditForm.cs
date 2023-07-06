@@ -25,10 +25,10 @@ namespace ExcelToWordProject
         private void SaveButton_Click(object sender, EventArgs e)
         {
             tag.Description = descriptionTextBox.Text;
-            CancelButton1_Click(sender, e);
+            CancelButton_Click(sender, e);
         }
 
-        private void CancelButton1_Click(object sender, EventArgs e)
+        private void CancelButton_Click(object sender, EventArgs e)
         {
             Close();
             Dispose();
