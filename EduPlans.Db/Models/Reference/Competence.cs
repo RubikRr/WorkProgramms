@@ -24,5 +24,8 @@ namespace EduPlans.Db.Models
             Description = descpription;
             SpecialityId = specialityId;
         }
+
+        public Competence() { }
+        
     }
 }

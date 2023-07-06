@@ -15,5 +15,6 @@ namespace EduPlans.Db.Models
         {
             Title = title;
         }
+        public Subject() { }
     }
 }

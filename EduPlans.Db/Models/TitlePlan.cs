@@ -65,7 +65,7 @@ namespace EduPlans.Db.Models
 
         public override string  ToString()
         {
-            return $"Специальность:{SpecId}\nКафедра:{DepartmentId}\nПрофиль:{Profile}\nДата уч. совета:{DateUchsovet}  Номер уч. совета:{NumberUchsovet}\nДата ФГОС:{DateFgos} номер ФГОС:{NumberFgos} \nДата поступления:{DateEnter}\nIdКафедры:{DepartmentId}";
+            return $"Айди:{Id}\nСпециальность:{SpecId}\nКафедра:{DepartmentId}\nПрофиль:{Profile}\nДата уч. совета:{DateUchsovet}  Номер уч. совета:{NumberUchsovet}\nДата ФГОС:{DateFgos} номер ФГОС:{NumberFgos} \nДата поступления:{DateEnter}\nIdКафедры:{DepartmentId}";
         }
     }
 }

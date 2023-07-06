@@ -21,5 +21,16 @@ namespace EduPlans.Db.Models
         [Column("ind_work")]
         public int IndWork { get; set; }
 
+        public EduSemester() { }
+        public EduSemester(int eduPlanId,int semester,double zed,int lecture,int practice,int laboratory, int indWord)
+        {
+            EduPlanId= eduPlanId;
+            Semester= semester;
+            Zed= zed;
+            Lecture= lecture;
+            Practice= practice;
+            Laboratory= laboratory;
+            IndWork= indWord;
+        }
     }
 }

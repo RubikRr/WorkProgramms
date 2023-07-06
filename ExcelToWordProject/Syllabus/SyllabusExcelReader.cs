@@ -1,5 +1,7 @@
 ﻿using EduPlans.Db;
 using EduPlans.Db.Models;
+using EduPlans.Db.Models.Binding;
+using EduPlans.Db.Сontexts.Blinding;
 using EduPlans.Db.Сontexts.Reference;
 using ExcelDataReader;
 using ExcelToWordProject.Models;
@@ -9,12 +11,12 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
-using Xceed.Document.NET;
+
 
 namespace ExcelToWordProject.Syllabus
 {
@@ -30,7 +32,8 @@ namespace ExcelToWordProject.Syllabus
                 try
                 {
                     string flagValue = ExcelData.Tables[0].Rows[11][8] as string ?? "";
-                    return flagValue.ToLower().Contains("учебный план");
+                    string flagValue2 = ExcelData.Tables[0].Rows[22][11] as string ?? "";
+                    return flagValue.ToLower().Contains("учебный план") || flagValue2.ToLower().Contains("учебный план");
                 }
                 catch
                 {
@@ -41,6 +44,8 @@ namespace ExcelToWordProject.Syllabus
 
         public string FilePath { get; }
         public DataSet ExcelData; // ExcelData.Tables["Name"].Rows[11][0] - пример
+
+        public TitlePlan Title;
 
         SyllabusParameters Parameters;
 
@@ -78,7 +83,7 @@ namespace ExcelToWordProject.Syllabus
 
         public void ParseCompetencies()
         {
-            
+
             ExcelTableList list = new ExcelTableList(Parameters.ModulesContentListName, ExcelData, Parameters.PlanListHeaderRowIndex);
 
 
@@ -90,7 +95,7 @@ namespace ExcelToWordProject.Syllabus
                 Parameters.Tags.Find(
                     tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.Content) as SmartSyllabusTag;
 
-            
+
 
             List<Competence> contentList = new List<Competence>();
 
@@ -108,7 +113,7 @@ namespace ExcelToWordProject.Syllabus
                         cc.Add(new Competence(index, description));
                     }
                 }
-              
+
                 cc.SaveChanges();
             }
 
@@ -126,7 +131,8 @@ namespace ExcelToWordProject.Syllabus
             var list = new ExcelTableList(tag.ListName, ExcelData);
 
             var rows = ExcelData.Tables[tag.ListName].Rows;
-            using (DepartmentContext dc=new DepartmentContext())
+
+            using (DepartmentContext dc = new DepartmentContext())
             {
                 for (int i = 2; i < rows.Count; i++)
                 {
@@ -139,11 +145,12 @@ namespace ExcelToWordProject.Syllabus
                 dc.SaveChanges();
             }
             
+
         }
 
         public void ParseTitle()
         {
-            
+
             var directionCodeTag = Parameters.Tags.Find(tag => tag.Key == "DirectionCode") as DefaultSyllabusTag;
             var programValueTag = Parameters.Tags.Find(tag => tag.Key == "ProgramValue") as DefaultSyllabusTag;
             var protocolInfoDateTag = Parameters.Tags.Find(tag => tag.Key == "ProtocolInfoDate") as DefaultSyllabusTag;
@@ -168,7 +175,60 @@ namespace ExcelToWordProject.Syllabus
                 tpc.Add(title);
                 tpc.SaveChanges();
             }
-            Console.WriteLine(title.ToString());
+            Title = title;
+        }
+
+
+        public void ParseEduPlan()
+        {
+
+            var modules = GetAllModules();
+            var eduPlans = new List<EduPlan>();
+            using (EduPlanContext epc = new EduPlanContext())
+            {
+
+                foreach (var module in modules)
+                {
+                    //Console.WriteLine($"{module.Name}\n" +
+                    //    $"{module.Properties.ModuleCode}\n" +
+                    //    $"{module.Properties.BlockName} and {module.Properties.PartName}\n" +
+                    //    $"{module.Properties.DepartmentName}\n" +
+                    //    $"Title plan:{0}\n");
+
+                    EduPlan eduPlan = new EduPlan(module.Properties.BlockName, module.Properties.PartName, module.Name, module.Properties.ModuleCode, module.Properties.DepartmentName, Title.Id);
+                    epc.Add(eduPlan);
+                    epc.SaveChanges();
+                    using (EduPlanCompetenciesContext epcc = new EduPlanCompetenciesContext())
+                    {
+                        foreach (var competenceCode in module.ContentIndexes)
+                        {
+                            epcc.Add(new EduPlanCompetencies(competenceCode, eduPlan.Id));
+                        }
+                        epcc.SaveChanges();
+                    }
+                    using (EduSemesterContext esc = new EduSemesterContext())
+                    {
+                        for (int i = 0; i < module.Properties.Semesters.Count; i++)
+                        {
+                            var lectures = module.Properties.LecturesHoursBySemesters[i];
+                            var practice = module.Properties.PracticalLessonsHoursBySemesters[i];
+                            var labs = module.Properties.LaboratoryLessonsHoursBySemesters[i];
+                            var ind = module.Properties.IndependentWorkHoursBySemesters[i];
+                            //Console.WriteLine($"{module.Name}\nСеместер:{i+1}\nЛекции:{lectures}\nПрактики:{practice}\nЛабы:{labs}\nИнд работа:{ind}\n");
+
+                            EduSemester es = new EduSemester(eduPlan.Id, i + 1, 0.0, lectures, practice, labs, ind);
+
+                            esc.Add(es);
+                        }
+                        esc.SaveChanges();
+                    }
+                }
+
+
+            }
+
+
+
         }
         public void CloseStreams()
         {
@@ -317,7 +377,7 @@ namespace ExcelToWordProject.Syllabus
                     {
                         if (maybePart.ToLower().Contains("часть"))
                         {
-                            properties.PartName = maybePart;
+                            properties.PartName = maybePart.Trim();
                         }
                         else
                         {
@@ -326,7 +386,7 @@ namespace ExcelToWordProject.Syllabus
                             if (!skipMarkers.Contains(maybeBlock.Trim()))
                             {
                                 properties.PartName = "";
-                                properties.BlockName = maybeBlock;
+                                properties.BlockName = maybeBlock.Trim();
                             }
                         }
                     }

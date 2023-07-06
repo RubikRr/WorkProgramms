@@ -18,8 +18,7 @@ namespace EduPlans.Db
        
 
         public SubjectContext():base("EduPlansDb")
-        { 
-        }
+        { }
 
         public SubjectContext(DbConnection connection, bool contextOwnConnection) : base(connection, contextOwnConnection) { }
 
