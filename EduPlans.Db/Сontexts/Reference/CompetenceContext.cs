@@ -10,18 +10,14 @@ namespace EduPlans.Db.Сontexts.Reference
 {
     public class CompetenceContext:DbContext
     {
-     
         public DbSet<Competence> Competencies { get; set; }
 
         public CompetenceContext():base("EduPlansDb") { }
 
         public void Add(Competence competence)
         {
-            
             if(!Competencies.Any(x=>x.Code==competence.Code))
                 Competencies.Add(competence);
         }
-
-      
     }
 }

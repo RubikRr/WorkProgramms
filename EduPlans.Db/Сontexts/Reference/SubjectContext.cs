@@ -15,11 +15,8 @@ namespace EduPlans.Db
     public class SubjectContext : DbContext
     {
         public DbSet<Subject> Subjects { get; set; }
-       
 
-        public SubjectContext():base("EduPlansDb")
-        { 
-        }
+        public SubjectContext():base("EduPlansDb") { }
 
         public SubjectContext(DbConnection connection, bool contextOwnConnection) : base(connection, contextOwnConnection) { }
 

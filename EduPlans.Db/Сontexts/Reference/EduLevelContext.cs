@@ -11,8 +11,6 @@ namespace EduPlans.Db.Сontexts.Reference
     public class EduLevelContext:DbContext
     {
         public DbSet<EduLevel> EduLevels { get; set; }
-        public EduLevelContext() : base("EduPlansDb") { }
-
-       
+        public EduLevelContext() : base("EduPlansDb") { }   
     }
 }

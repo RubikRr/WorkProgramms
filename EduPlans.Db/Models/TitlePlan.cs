@@ -31,7 +31,8 @@ namespace EduPlans.Db.Models
         public int DepartmentId { get; set; } = 0;
         public string Included { get; set; }
 
-        public TitlePlan(string specialityCode, string profile, DateTime dateUchsovet, int numberUchsovet, int dateEnter, DateTime dateFgos, int numberFgos, string departmentTitle, string included)
+        public TitlePlan(string specialityCode, string profile, DateTime dateUchsovet, int numberUchsovet, int dateEnter, 
+            DateTime dateFgos, int numberFgos, string departmentTitle, string included)
         {
             SpecId = this.GetSpecialityId(specialityCode);
             Profile = profile;

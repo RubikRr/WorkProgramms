@@ -18,6 +18,5 @@ namespace EduPlans.Db.Сontexts.Reference
         {
             Blocks.Add(block);
         }
-
     }
 }
