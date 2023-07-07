@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EduPlans.Db.Сontexts.Reference;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -16,5 +17,19 @@ namespace EduPlans.Db.Models.Binding
 
         [Column("edu_plan_id")]
         public int EduPlanId { get; set; }
+
+        public EduPlanCompetencies(string competencyCode, int eduPlanId)
+        {
+            CompetencyId = GetCompetenceId(competencyCode);
+            EduPlanId = eduPlanId;
+        }
+        public EduPlanCompetencies() { }
+        public int GetCompetenceId(string competencyIndex)
+        {
+            using (CompetenceContext cc = new CompetenceContext())
+            {
+                return cc.Competencies.FirstOrDefault(competence => competence.Code == competencyIndex)?.Id??0;
+            }
+        }
     }
 }

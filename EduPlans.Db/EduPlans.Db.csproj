@@ -109,12 +109,15 @@
     <Compile Include="Models\Reference\FormControl.cs" />
     <Compile Include="Models\Reference\Speciality.cs" />
     <Compile Include="Models\TitlePlan.cs" />
+    <Compile Include="Сontexts\Blinding\EduPlanCompetenciesContext.cs" />
     <Compile Include="Сontexts\Reference\BlockContext.cs" />
     <Compile Include="Сontexts\Reference\CompetenceContext.cs" />
     <Compile Include="Models\Subject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Сontexts\Reference\DepartmentContext.cs" />
     <Compile Include="Сontexts\Reference\EduLevelContext.cs" />
+    <Compile Include="Сontexts\Reference\EduPlanContext.cs" />
+    <Compile Include="Сontexts\Reference\EduSemesterContext.cs" />
     <Compile Include="Сontexts\Reference\SpecialityContext.cs" />
     <Compile Include="Сontexts\Reference\SubjectContext.cs" />
     <Compile Include="Сontexts\Reference\TitlePlanContext.cs" />

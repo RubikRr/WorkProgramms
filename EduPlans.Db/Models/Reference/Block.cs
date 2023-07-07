@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace EduPlans.Db.Models
 {
+    [Table("block")]
     public class Block
     {
         public int Id { get; set; }
