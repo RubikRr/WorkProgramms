@@ -102,7 +102,7 @@
             this.comboBoxSubjectName.FormattingEnabled = true;
             this.comboBoxSubjectName.Location = new System.Drawing.Point(13, 173);
             this.comboBoxSubjectName.Name = "comboBoxSubjectName";
-            this.comboBoxSubjectName.Size = new System.Drawing.Size(266, 26);
+            this.comboBoxSubjectName.Size = new System.Drawing.Size(542, 26);
             this.comboBoxSubjectName.TabIndex = 20;
             // 
             // pictureBoxAllSubjects
@@ -110,7 +110,7 @@
             this.pictureBoxAllSubjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxAllSubjects.Cursor = System.Windows.Forms.Cursors.Hand;
             this.pictureBoxAllSubjects.Image = global::WordDocsWriter.Properties.Resources.uncheck;
-            this.pictureBoxAllSubjects.Location = new System.Drawing.Point(328, 173);
+            this.pictureBoxAllSubjects.Location = new System.Drawing.Point(402, 143);
             this.pictureBoxAllSubjects.Name = "pictureBoxAllSubjects";
             this.pictureBoxAllSubjects.Size = new System.Drawing.Size(26, 26);
             this.pictureBoxAllSubjects.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -289,7 +289,7 @@
             // 
             this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(355, 173);
+            this.label3.Location = new System.Drawing.Point(429, 143);
             this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(126, 26);

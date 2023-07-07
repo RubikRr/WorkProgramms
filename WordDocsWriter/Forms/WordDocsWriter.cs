@@ -24,9 +24,11 @@ namespace WordDocsWriter
 
         private void FillComboBoxSubjectNameItems()
         {
+            comboBoxSubjectName.Items.Clear();
             using (SubjectContext sc = new SubjectContext())
             {
-                
+                foreach (var item in sc.Subjects)
+                    comboBoxSubjectName.Items.Add(item.Title);
             }
         }
 
@@ -52,7 +54,7 @@ namespace WordDocsWriter
                     writeAllSubjects = true;
                 }
 
-                this.comboBoxSubjectName.Enabled = !writeAllSubjects;
+                comboBoxSubjectName.Enabled = !writeAllSubjects;
                 Console.WriteLine("klick");
             }
         }
