@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ExcelToWordProject", "Excel
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EduPlans.Db", "EduPlans.Db\EduPlans.Db.csproj", "{1CF108C8-2953-4462-ACDF-66574B63DECC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordDocsWriter", "WordDocsWriter\WordDocsWriter.csproj", "{8E2E951D-4BAD-46A1-92B6-58BD4210FA19}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1CF108C8-2953-4462-ACDF-66574B63DECC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1CF108C8-2953-4462-ACDF-66574B63DECC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1CF108C8-2953-4462-ACDF-66574B63DECC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E2E951D-4BAD-46A1-92B6-58BD4210FA19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E2E951D-4BAD-46A1-92B6-58BD4210FA19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E2E951D-4BAD-46A1-92B6-58BD4210FA19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E2E951D-4BAD-46A1-92B6-58BD4210FA19}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
