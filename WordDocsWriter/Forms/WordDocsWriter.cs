@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EduPlans.Db;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,7 +24,10 @@ namespace WordDocsWriter
 
         private void FillComboBoxSubjectNameItems()
         {
-
+            using (SubjectContext sc = new SubjectContext())
+            {
+                
+            }
         }
 
         private void WriteButton_Click(object sender, EventArgs e)
