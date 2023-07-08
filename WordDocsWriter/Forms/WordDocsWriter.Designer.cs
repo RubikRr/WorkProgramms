@@ -28,8 +28,10 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WordDocsWriter));
             this.bodyPanel = new System.Windows.Forms.Panel();
             this.bodyGroupBox = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.comboBoxSubjectName = new System.Windows.Forms.ComboBox();
             this.pictureBoxAllSubjects = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -41,16 +43,17 @@
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.resultFilePrefixLabel = new System.Windows.Forms.Label();
             this.resultFilePrefixTextBox = new System.Windows.Forms.TextBox();
-            this.WriteButton = new System.Windows.Forms.PictureBox();
+            this.writeButton = new System.Windows.Forms.PictureBox();
             this.folderPathButton = new System.Windows.Forms.PictureBox();
             this.resultFolderPathLabel = new System.Windows.Forms.Label();
             this.resultFolderPathTextBox = new System.Windows.Forms.TextBox();
             this.filePathLabel = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
+            this.comboBoxSpeciality = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.bodyPanel.SuspendLayout();
             this.bodyGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAllSubjects)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.WriteButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.writeButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.folderPathButton)).BeginInit();
             this.SuspendLayout();
             // 
@@ -69,6 +72,8 @@
             // 
             // bodyGroupBox
             // 
+            this.bodyGroupBox.Controls.Add(this.comboBoxSpeciality);
+            this.bodyGroupBox.Controls.Add(this.label5);
             this.bodyGroupBox.Controls.Add(this.label3);
             this.bodyGroupBox.Controls.Add(this.comboBoxSubjectName);
             this.bodyGroupBox.Controls.Add(this.pictureBoxAllSubjects);
@@ -81,7 +86,7 @@
             this.bodyGroupBox.Controls.Add(this.progressBar1);
             this.bodyGroupBox.Controls.Add(this.resultFilePrefixLabel);
             this.bodyGroupBox.Controls.Add(this.resultFilePrefixTextBox);
-            this.bodyGroupBox.Controls.Add(this.WriteButton);
+            this.bodyGroupBox.Controls.Add(this.writeButton);
             this.bodyGroupBox.Controls.Add(this.folderPathButton);
             this.bodyGroupBox.Controls.Add(this.resultFolderPathLabel);
             this.bodyGroupBox.Controls.Add(this.resultFolderPathTextBox);
@@ -95,12 +100,24 @@
             this.bodyGroupBox.TabIndex = 1;
             this.bodyGroupBox.TabStop = false;
             // 
+            // label3
+            // 
+            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label3.Location = new System.Drawing.Point(429, 251);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(126, 26);
+            this.label3.TabIndex = 21;
+            this.label3.Text = "Все дисциплины";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
             // comboBoxSubjectName
             // 
             this.comboBoxSubjectName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
             this.comboBoxSubjectName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.comboBoxSubjectName.FormattingEnabled = true;
-            this.comboBoxSubjectName.Location = new System.Drawing.Point(13, 173);
+            this.comboBoxSubjectName.Location = new System.Drawing.Point(13, 281);
             this.comboBoxSubjectName.Name = "comboBoxSubjectName";
             this.comboBoxSubjectName.Size = new System.Drawing.Size(542, 26);
             this.comboBoxSubjectName.TabIndex = 20;
@@ -109,8 +126,8 @@
             // 
             this.pictureBoxAllSubjects.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBoxAllSubjects.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.pictureBoxAllSubjects.Image = global::WordDocsWriter.Properties.Resources.uncheck;
-            this.pictureBoxAllSubjects.Location = new System.Drawing.Point(402, 143);
+            this.pictureBoxAllSubjects.Image = ((System.Drawing.Image)(resources.GetObject("pictureBoxAllSubjects.Image")));
+            this.pictureBoxAllSubjects.Location = new System.Drawing.Point(402, 251);
             this.pictureBoxAllSubjects.Name = "pictureBoxAllSubjects";
             this.pictureBoxAllSubjects.Size = new System.Drawing.Size(26, 26);
             this.pictureBoxAllSubjects.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -123,12 +140,12 @@
             this.label2.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 151);
+            this.label2.Location = new System.Drawing.Point(10, 259);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(168, 18);
+            this.label2.Size = new System.Drawing.Size(93, 18);
             this.label2.TabIndex = 18;
-            this.label2.Text = "Название дисциплины";
+            this.label2.Text = "Дисциплина";
             // 
             // label1
             // 
@@ -196,7 +213,7 @@
             // 
             this.progressBar1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.progressBar1.Location = new System.Drawing.Point(13, 476);
+            this.progressBar1.Location = new System.Drawing.Point(13, 472);
             this.progressBar1.Name = "progressBar1";
             this.progressBar1.Size = new System.Drawing.Size(468, 27);
             this.progressBar1.TabIndex = 10;
@@ -224,32 +241,33 @@
             this.resultFilePrefixTextBox.Size = new System.Drawing.Size(397, 26);
             this.resultFilePrefixTextBox.TabIndex = 4;
             // 
-            // WriteButton
+            // writeButton
             // 
-            this.WriteButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.WriteButton.BackColor = System.Drawing.SystemColors.Control;
-            this.WriteButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.WriteButton.ErrorImage = null;
-            this.WriteButton.Image = global::WordDocsWriter.Properties.Resources.WriteDoc;
-            this.WriteButton.InitialImage = null;
-            this.WriteButton.Location = new System.Drawing.Point(525, 439);
-            this.WriteButton.Name = "WriteButton";
-            this.WriteButton.Size = new System.Drawing.Size(64, 64);
-            this.WriteButton.TabIndex = 6;
-            this.WriteButton.TabStop = false;
-            this.WriteButton.Click += new System.EventHandler(this.WriteButton_Click);
+            this.writeButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.writeButton.BackColor = System.Drawing.SystemColors.Control;
+            this.writeButton.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.writeButton.ErrorImage = null;
+            this.writeButton.Image = ((System.Drawing.Image)(resources.GetObject("writeButton.Image")));
+            this.writeButton.InitialImage = null;
+            this.writeButton.Location = new System.Drawing.Point(525, 435);
+            this.writeButton.Name = "writeButton";
+            this.writeButton.Size = new System.Drawing.Size(64, 64);
+            this.writeButton.TabIndex = 6;
+            this.writeButton.TabStop = false;
+            this.writeButton.Click += new System.EventHandler(this.writeButton_Click);
             // 
             // folderPathButton
             // 
             this.folderPathButton.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.folderPathButton.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.folderPathButton.Image = global::WordDocsWriter.Properties.Resources.folder;
+            this.folderPathButton.Image = ((System.Drawing.Image)(resources.GetObject("folderPathButton.Image")));
             this.folderPathButton.Location = new System.Drawing.Point(562, 355);
             this.folderPathButton.Name = "folderPathButton";
             this.folderPathButton.Size = new System.Drawing.Size(26, 26);
             this.folderPathButton.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.folderPathButton.TabIndex = 4;
             this.folderPathButton.TabStop = false;
+            this.folderPathButton.Click += new System.EventHandler(this.folderPathButton_Click);
             // 
             // resultFolderPathLabel
             // 
@@ -281,21 +299,34 @@
             this.filePathLabel.Location = new System.Drawing.Point(10, 23);
             this.filePathLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.filePathLabel.Name = "filePathLabel";
-            this.filePathLabel.Size = new System.Drawing.Size(269, 18);
+            this.filePathLabel.Size = new System.Drawing.Size(192, 18);
             this.filePathLabel.TabIndex = 1;
-            this.filePathLabel.Text = "Выберете тип файла для генерации";
+            this.filePathLabel.Text = "Тип файла для генерации";
             // 
-            // label3
+            // comboBoxSpeciality
             // 
-            this.label3.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.comboBoxSpeciality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxSpeciality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxSpeciality.FormattingEnabled = true;
+            this.comboBoxSpeciality.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboBoxSpeciality.ItemHeight = 18;
+            this.comboBoxSpeciality.Location = new System.Drawing.Point(13, 192);
+            this.comboBoxSpeciality.Name = "comboBoxSpeciality";
+            this.comboBoxSpeciality.Size = new System.Drawing.Size(542, 26);
+            this.comboBoxSpeciality.TabIndex = 24;
+            this.comboBoxSpeciality.SelectedIndexChanged += new System.EventHandler(this.comboBoxSpeciality_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.label3.Location = new System.Drawing.Point(429, 143);
-            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(126, 26);
-            this.label3.TabIndex = 21;
-            this.label3.Text = "Все дисциплины";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 170);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(121, 18);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Специальность";
             // 
             // WordDocsWriter
             // 
@@ -312,7 +343,7 @@
             this.bodyGroupBox.ResumeLayout(false);
             this.bodyGroupBox.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAllSubjects)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.WriteButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.writeButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.folderPathButton)).EndInit();
             this.ResumeLayout(false);
 
@@ -325,7 +356,7 @@
         private System.Windows.Forms.ProgressBar progressBar1;
         private System.Windows.Forms.Label resultFilePrefixLabel;
         private System.Windows.Forms.TextBox resultFilePrefixTextBox;
-        private System.Windows.Forms.PictureBox WriteButton;
+        private System.Windows.Forms.PictureBox writeButton;
         private System.Windows.Forms.PictureBox folderPathButton;
         private System.Windows.Forms.Label resultFolderPathLabel;
         private System.Windows.Forms.TextBox resultFolderPathTextBox;
@@ -339,6 +370,8 @@
         private System.Windows.Forms.PictureBox pictureBoxAllSubjects;
         private System.Windows.Forms.ComboBox comboBoxSubjectName;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.ComboBox comboBoxSpeciality;
+        private System.Windows.Forms.Label label5;
     }
 }
 
