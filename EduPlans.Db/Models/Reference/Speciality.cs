@@ -16,5 +16,14 @@ namespace EduPlans.Db.Models.Reference
         public string Profile { get; set; }
         [Column("edu_level_id")]
         public int EduLevelId { get; set; }
+
+        //public override string ToString()
+        //{
+        //    if (String.IsNullOrEmpty(Profile))
+        //    {
+        //        return $"{Title}";
+        //    }
+        //    return $"{Title} \nПрофиль: {Profile}";
+        //}
     }
 }
