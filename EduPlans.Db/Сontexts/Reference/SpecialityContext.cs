@@ -12,5 +12,25 @@ namespace EduPlans.Db.Сontexts.Reference
     {
         public DbSet<Speciality> Specialities { get; set; }
         public SpecialityContext():base("EduPlansDb") { }
+
+        public List<string> GetAllTitles()
+        {
+            return Specialities
+                .Select(x => x.Title)
+                .ToList();
+        }
+
+        public Speciality GetSpecialty(string title)
+        {
+            return Specialities
+                .First(s => s.Title == title);
+        }
+
+        public Speciality GetSpecialty(int id)
+        {
+            return Specialities
+                .First(s => s.Id == id);
+
+        }
     }
 }

@@ -20,5 +20,10 @@ namespace EduPlans.Db.Сontexts.Reference
         {
             TitlePlans.Add(titlePlan);
         }
+
+        public TitlePlan GetTitlePlan(int specId)
+        {
+            return TitlePlans.First(x => x.Id == specId);
+        } 
     }
 }

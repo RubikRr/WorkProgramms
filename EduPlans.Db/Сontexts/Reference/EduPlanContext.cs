@@ -18,5 +18,15 @@ namespace EduPlans.Db.Сontexts.Reference
         {
             EduPlans.Add(eduPlan);
         }
+
+        public List<EduPlan> GetEduPlans(int titlePlanId)
+        {
+            return EduPlans.Where(ep => ep.TitlePlanId == titlePlanId).ToList();
+        }
+
+        public List<int> GetEduPlansSubjectId(int titlePlanId)
+        {
+            return GetEduPlans(titlePlanId).Select(ep => ep.SubjectId).ToList();
+        }
     }
 }

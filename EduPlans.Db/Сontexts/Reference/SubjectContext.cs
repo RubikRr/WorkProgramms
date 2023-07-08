@@ -36,5 +36,20 @@ namespace EduPlans.Db
             if (!Subjects.Any(s => s.Title == subject.Title))
                 Subjects.Add(subject);
         }
+
+        public Subject GetSubject(int id)
+        {
+            return Subjects.First(s => s.Id == id);
+        }
+
+        public List<Subject> GetSubjects(List<int> idList)
+        {
+            return Subjects.Where(s => idList.Contains(s.Id)).ToList();
+        }
+
+        public List<string> GetSubjectsTitle(List<int> idList)
+        {
+            return GetSubjects(idList).Select(s => s.Title).ToList();
+        }
     }   
 }
