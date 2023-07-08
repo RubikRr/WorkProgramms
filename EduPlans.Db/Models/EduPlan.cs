@@ -25,6 +25,8 @@ namespace EduPlans.Db.Models
         [Column("title_plan_id")]
         public int TitlePlanId { get; set; }
 
+        public EduPlan() { }
+
         public EduPlan(string blockTitle,string partTitle,string subjectName,string subjectCode,string departmentTitle,int titilePlanId=0) 
         {
             BlockId = GetBlockId(blockTitle, partTitle);
