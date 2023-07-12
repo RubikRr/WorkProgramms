@@ -22,51 +22,80 @@ namespace WordDocsWriter.Syllabus
 
         }
 
-        public static List<string> GetAllValuesFromTable(Tables table, string speciality = null)
+        public static List<string> GetAdmissionYears(string speciality)
+        {
+            List<string> values = new List<string>();
+            using (SpecialityContext specc = new SpecialityContext())
+            {
+                int specialityId = specc.GetSpecialty(speciality).Id;
+                using (TitlePlanContext tpc = new TitlePlanContext())
+                {
+                    values = tpc.GetTitlePlansBySpecId(specialityId).Select(tp => tp.DateEnter.ToString()).ToList();
+                }
+            }
+            return values;
+        }
+
+        public static List<string> GetDocYears(string speciality, int dateEnter)
+        {
+            List<string> values = new List<string>();
+            using (SpecialityContext specc = new SpecialityContext())
+            {
+                int specialityId = specc.GetSpecialty(speciality).Id;
+                using (TitlePlanContext tpc = new TitlePlanContext())
+                {
+                    values = tpc.GetTitlePlansByDateEnterAndSpecId(specialityId, dateEnter).Select(tp => tp.CurrentYear.ToString()).ToList();
+                }
+            }
+            return values;
+        }
+
+        public static List<string> GetAllSpecialties()
         {
             List<string> values = new List<string>();
 
-            if (table == Tables.Speciality)
+            using (SpecialityContext specc = new SpecialityContext())
             {
-                using (SpecialityContext sc = new SpecialityContext())
+                values = specc.GetAllTitles();
+            }
+            return values;
+        }
+
+        public static List<string> GetSubjects(int dateEnter, int currentYear, string speciality = null)
+        {
+            List<string> values = new List<string>();
+
+            if (String.IsNullOrEmpty(speciality))
+            {
+                using (SubjectContext subc = new SubjectContext())
                 {
-                    values = sc.GetAllTitles();
+                    foreach (var item in subc.Subjects)
+                        values.Add(item.ToString());
                 }
             }
-            else if (table == Tables.Subjects)
+            else
             {
-
-                if (String.IsNullOrEmpty(speciality))
+                using (SpecialityContext specc = new SpecialityContext())
                 {
-                    using (SubjectContext subc = new SubjectContext())
-                    {
-                        foreach (var item in subc.Subjects)
-                            values.Add(item.ToString());
-                    }
-                }
-                else
-                {
-                    using (SpecialityContext specc = new SpecialityContext())
-                    {
-                        int specialityId = specc.GetSpecialty(speciality).Id;
+                    int specialityId = specc.GetSpecialty(speciality).Id;
 
-                        using (TitlePlanContext tpc = new TitlePlanContext())
+                    using (TitlePlanContext tpc = new TitlePlanContext())
+                    {
+                        int titlePlanId = tpc.GetTitlePlan(specialityId, dateEnter, currentYear).Id;
+
+                        using (EduPlanContext epc = new EduPlanContext())
                         {
-                            int titlePlanId = tpc.GetTitlePlan(specialityId).Id;
+                            List<int> SubjectIdList = epc.GetEduPlansSubjectId(titlePlanId);
 
-                            using (EduPlanContext epc = new EduPlanContext())
+                            using (SubjectContext subc = new SubjectContext())
                             {
-                                List<int> SubjectIdList = epc.GetEduPlansSubjectId(titlePlanId);
-
-                                using (SubjectContext subc = new SubjectContext())
-                                {
-                                    values = subc.GetSubjectsTitle(SubjectIdList);
-                                }
+                                values = subc.GetSubjectsTitle(SubjectIdList);
                             }
                         }
                     }
                 }
             }
+            
             return values;
         }
 

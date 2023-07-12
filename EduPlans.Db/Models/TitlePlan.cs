@@ -59,7 +59,7 @@ namespace EduPlans.Db.Models
         {
             using (SpecialityContext dc = new SpecialityContext())
             {
-                return dc.Specialities.ToList().FirstOrDefault(speciality => speciality.Code== specialityCode)?.Id ?? 0;
+                return dc.Specialities.ToList().FirstOrDefault(speciality => speciality.Code == specialityCode)?.Id ?? 0;
             }
         }
 

@@ -21,9 +21,25 @@ namespace EduPlans.Db.Сontexts.Reference
             TitlePlans.Add(titlePlan);
         }
 
-        public TitlePlan GetTitlePlan(int specId)
+        public List<TitlePlan> GetTitlePlansBySpecId(int specId)
         {
-            return TitlePlans.First(x => x.Id == specId);
-        } 
+            return TitlePlans.Where(x => x.Id == specId).ToList();
+        }
+
+        public List<TitlePlan> GetTitlePlansByDateEnter(int dateEnter)
+        {
+            return TitlePlans.Where(x => x.DateEnter == dateEnter).ToList();
+        }
+
+        public List<TitlePlan> GetTitlePlansByDateEnterAndSpecId(int specId, int dateEnter)
+        {
+            return TitlePlans.Where(x => x.Id == specId && x.DateEnter == dateEnter).ToList();
+        }
+
+        public TitlePlan GetTitlePlan(int specId, int dateEnter, int currentYear)
+        {
+            return TitlePlans.Where(x => x.Id == specId && x.DateEnter == dateEnter && x.CurrentYear == currentYear).First();
+        }
+
     }
 }

@@ -31,14 +31,16 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WordDocsWriter));
             this.bodyPanel = new System.Windows.Forms.Panel();
             this.bodyGroupBox = new System.Windows.Forms.GroupBox();
+            this.comboBoxAdmissionYear = new System.Windows.Forms.ComboBox();
+            this.comboBoxDocYear = new System.Windows.Forms.ComboBox();
+            this.comboBoxSpeciality = new System.Windows.Forms.ComboBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.comboBoxSubjectName = new System.Windows.Forms.ComboBox();
             this.pictureBoxAllSubjects = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.labelDocYear = new System.Windows.Forms.Label();
-            this.dateTimePickerAdmissionYear = new System.Windows.Forms.DateTimePicker();
-            this.dateTimePickerDocYear = new System.Windows.Forms.DateTimePicker();
             this.comboBoxWordFileType = new System.Windows.Forms.ComboBox();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
             this.resultFilePrefixLabel = new System.Windows.Forms.Label();
@@ -48,8 +50,6 @@
             this.resultFolderPathLabel = new System.Windows.Forms.Label();
             this.resultFolderPathTextBox = new System.Windows.Forms.TextBox();
             this.filePathLabel = new System.Windows.Forms.Label();
-            this.comboBoxSpeciality = new System.Windows.Forms.ComboBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.bodyPanel.SuspendLayout();
             this.bodyGroupBox.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxAllSubjects)).BeginInit();
@@ -72,6 +72,8 @@
             // 
             // bodyGroupBox
             // 
+            this.bodyGroupBox.Controls.Add(this.comboBoxAdmissionYear);
+            this.bodyGroupBox.Controls.Add(this.comboBoxDocYear);
             this.bodyGroupBox.Controls.Add(this.comboBoxSpeciality);
             this.bodyGroupBox.Controls.Add(this.label5);
             this.bodyGroupBox.Controls.Add(this.label3);
@@ -80,8 +82,6 @@
             this.bodyGroupBox.Controls.Add(this.label2);
             this.bodyGroupBox.Controls.Add(this.label1);
             this.bodyGroupBox.Controls.Add(this.labelDocYear);
-            this.bodyGroupBox.Controls.Add(this.dateTimePickerAdmissionYear);
-            this.bodyGroupBox.Controls.Add(this.dateTimePickerDocYear);
             this.bodyGroupBox.Controls.Add(this.comboBoxWordFileType);
             this.bodyGroupBox.Controls.Add(this.progressBar1);
             this.bodyGroupBox.Controls.Add(this.resultFilePrefixLabel);
@@ -99,6 +99,57 @@
             this.bodyGroupBox.Size = new System.Drawing.Size(596, 512);
             this.bodyGroupBox.TabIndex = 1;
             this.bodyGroupBox.TabStop = false;
+            // 
+            // comboBoxAdmissionYear
+            // 
+            this.comboBoxAdmissionYear.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxAdmissionYear.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxAdmissionYear.FormattingEnabled = true;
+            this.comboBoxAdmissionYear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboBoxAdmissionYear.ItemHeight = 18;
+            this.comboBoxAdmissionYear.Location = new System.Drawing.Point(13, 193);
+            this.comboBoxAdmissionYear.Name = "comboBoxAdmissionYear";
+            this.comboBoxAdmissionYear.Size = new System.Drawing.Size(99, 26);
+            this.comboBoxAdmissionYear.TabIndex = 26;
+            this.comboBoxAdmissionYear.SelectedIndexChanged += new System.EventHandler(this.comboBoxAdmissionYear_SelectedIndexChanged);
+            // 
+            // comboBoxDocYear
+            // 
+            this.comboBoxDocYear.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxDocYear.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxDocYear.FormattingEnabled = true;
+            this.comboBoxDocYear.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboBoxDocYear.ItemHeight = 18;
+            this.comboBoxDocYear.Location = new System.Drawing.Point(166, 193);
+            this.comboBoxDocYear.Name = "comboBoxDocYear";
+            this.comboBoxDocYear.Size = new System.Drawing.Size(99, 26);
+            this.comboBoxDocYear.TabIndex = 25;
+            this.comboBoxDocYear.SelectedIndexChanged += new System.EventHandler(this.comboBoxDocYear_SelectedIndexChanged);
+            // 
+            // comboBoxSpeciality
+            // 
+            this.comboBoxSpeciality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.comboBoxSpeciality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.comboBoxSpeciality.FormattingEnabled = true;
+            this.comboBoxSpeciality.ImeMode = System.Windows.Forms.ImeMode.NoControl;
+            this.comboBoxSpeciality.ItemHeight = 18;
+            this.comboBoxSpeciality.Location = new System.Drawing.Point(13, 112);
+            this.comboBoxSpeciality.Name = "comboBoxSpeciality";
+            this.comboBoxSpeciality.Size = new System.Drawing.Size(542, 26);
+            this.comboBoxSpeciality.TabIndex = 24;
+            this.comboBoxSpeciality.SelectedIndexChanged += new System.EventHandler(this.comboBoxSpeciality_SelectedIndexChanged);
+            // 
+            // label5
+            // 
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(10, 90);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(121, 18);
+            this.label5.TabIndex = 22;
+            this.label5.Text = "Специальность";
             // 
             // label3
             // 
@@ -152,7 +203,7 @@
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(149, 86);
+            this.label1.Location = new System.Drawing.Point(10, 172);
             this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(130, 18);
@@ -164,32 +215,12 @@
             this.labelDocYear.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.labelDocYear.AutoSize = true;
-            this.labelDocYear.Location = new System.Drawing.Point(10, 86);
+            this.labelDocYear.Location = new System.Drawing.Point(163, 172);
             this.labelDocYear.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.labelDocYear.Name = "labelDocYear";
             this.labelDocYear.Size = new System.Drawing.Size(116, 18);
             this.labelDocYear.TabIndex = 15;
             this.labelDocYear.Text = "Год Документа";
-            // 
-            // dateTimePickerAdmissionYear
-            // 
-            this.dateTimePickerAdmissionYear.CustomFormat = "yyyy";
-            this.dateTimePickerAdmissionYear.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerAdmissionYear.Location = new System.Drawing.Point(152, 107);
-            this.dateTimePickerAdmissionYear.Name = "dateTimePickerAdmissionYear";
-            this.dateTimePickerAdmissionYear.ShowUpDown = true;
-            this.dateTimePickerAdmissionYear.Size = new System.Drawing.Size(61, 26);
-            this.dateTimePickerAdmissionYear.TabIndex = 14;
-            // 
-            // dateTimePickerDocYear
-            // 
-            this.dateTimePickerDocYear.CustomFormat = "yyyy";
-            this.dateTimePickerDocYear.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePickerDocYear.Location = new System.Drawing.Point(13, 107);
-            this.dateTimePickerDocYear.Name = "dateTimePickerDocYear";
-            this.dateTimePickerDocYear.ShowUpDown = true;
-            this.dateTimePickerDocYear.Size = new System.Drawing.Size(61, 26);
-            this.dateTimePickerDocYear.TabIndex = 13;
             // 
             // comboBoxWordFileType
             // 
@@ -303,31 +334,6 @@
             this.filePathLabel.TabIndex = 1;
             this.filePathLabel.Text = "Тип файла для генерации";
             // 
-            // comboBoxSpeciality
-            // 
-            this.comboBoxSpeciality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.comboBoxSpeciality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.comboBoxSpeciality.FormattingEnabled = true;
-            this.comboBoxSpeciality.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.comboBoxSpeciality.ItemHeight = 18;
-            this.comboBoxSpeciality.Location = new System.Drawing.Point(13, 192);
-            this.comboBoxSpeciality.Name = "comboBoxSpeciality";
-            this.comboBoxSpeciality.Size = new System.Drawing.Size(542, 26);
-            this.comboBoxSpeciality.TabIndex = 24;
-            this.comboBoxSpeciality.SelectedIndexChanged += new System.EventHandler(this.comboBoxSpeciality_SelectedIndexChanged);
-            // 
-            // label5
-            // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(10, 170);
-            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(121, 18);
-            this.label5.TabIndex = 22;
-            this.label5.Text = "Специальность";
-            // 
             // WordDocsWriter
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
@@ -362,9 +368,7 @@
         private System.Windows.Forms.TextBox resultFolderPathTextBox;
         private System.Windows.Forms.Label filePathLabel;
         private System.Windows.Forms.ComboBox comboBoxWordFileType;
-        private System.Windows.Forms.DateTimePicker dateTimePickerDocYear;
         private System.Windows.Forms.Label labelDocYear;
-        private System.Windows.Forms.DateTimePicker dateTimePickerAdmissionYear;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.PictureBox pictureBoxAllSubjects;
@@ -372,6 +376,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.ComboBox comboBoxSpeciality;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox comboBoxAdmissionYear;
+        private System.Windows.Forms.ComboBox comboBoxDocYear;
     }
 }
 

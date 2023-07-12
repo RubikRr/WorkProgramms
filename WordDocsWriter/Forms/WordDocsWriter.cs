@@ -18,6 +18,9 @@ namespace WordDocsWriter
     {
         private string wordFileType;
         private bool writeAllSubjects;
+        private int admissionYear;
+        private int docYear;
+        private string speciality;
 
         public WordDocsWriter()
         {
@@ -34,20 +37,24 @@ namespace WordDocsWriter
         {
             resultFolderPathTextBox.Text = Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments);
             comboBoxWordFileType.Text = comboBoxWordFileType.Items[0].ToString();
-            dateTimePickerDocYear.Value = DateTime.Now;
-            dateTimePickerAdmissionYear.Value = DateTime.Now;
             writeAllSubjects = false;
             ChangePictureBoxAllSubjectsState(pictureBoxAllSubjects);
         }
 
 
+        private void ResetComboBox(ComboBox comboBox)
+        {
+            comboBox.Items.Clear();
+            comboBox.Text = string.Empty;
+        }
+
         /// <summary>
         /// Заполняет коллекцию ComboBox'a всеми дисциплинами из базы 
         /// </summary>
-        private void FillComboBoxSubjectNameItems(ComboBox comboBox, string speciality)
+        private void ChangeComboBoxSubjectNameItems(ComboBox comboBox, int admissionYear, int docYear, string speciality)
         {
             comboBox.Items.Clear();
-            comboBox.Items.AddRange(DBReader.GetAllValuesFromTable(DBReader.Tables.Subjects, speciality).ToArray());
+            comboBox.Items.AddRange(DBReader.GetSubjects(admissionYear, docYear, speciality).ToArray());
         }
 
         /// <summary>
@@ -56,7 +63,25 @@ namespace WordDocsWriter
         private void FillComboBoxSpeciality(ComboBox comboBox)
         {
             comboBox.Items.Clear();
-            comboBox.Items.AddRange(DBReader.GetAllValuesFromTable(DBReader.Tables.Speciality).ToArray());
+            comboBox.Items.AddRange(DBReader.GetAllSpecialties().ToArray());
+        }
+
+        /// <summary>
+        /// Заполняет коллекцию ComboBox'a всеми возможными годами поступления из базы 
+        /// </summary>
+        private void ChangeComboBoxAdmissionYear(ComboBox comboBox, string speciality)
+        {
+            comboBox.Items.Clear();
+            comboBox.Items.AddRange(DBReader.GetAdmissionYears(speciality).ToArray());
+        }
+
+        /// <summary>
+        /// Заполняет коллекцию ComboBox'a всеми возможными годами документов из базы 
+        /// </summary>
+        private void ChangeComboBoxDocYear(ComboBox comboBox, string speciality, int admissionYear)
+        {
+            comboBox.Items.Clear();
+            comboBox.Items.AddRange(DBReader.GetDocYears(speciality, admissionYear).ToArray());
         }
 
         private void writeButton_Click(object sender, EventArgs e)
@@ -67,8 +92,8 @@ namespace WordDocsWriter
                 pictureBoxAllSubjects.Enabled = false;
 
                 var wordFileType = comboBoxWordFileType.Text;
-                var docYear = dateTimePickerDocYear.Value;
-                var admissionYear = dateTimePickerAdmissionYear.Value; //date_enter in BD
+                var docYear = comboBoxDocYear.Text; // current_year in BD
+                var admissionYear = comboBoxDocYear.Text; //date_enter in BD
                 var speciality = comboBoxSpeciality.Text;
                 var subjectName = comboBoxSubjectName.Text;
                 var resultFolderPath = resultFolderPathTextBox.Text;
@@ -129,7 +154,25 @@ namespace WordDocsWriter
 
         private void comboBoxSpeciality_SelectedIndexChanged(object sender, EventArgs e)
         {
-            FillComboBoxSubjectNameItems(comboBoxSubjectName, (sender as ComboBox).Text);
+            speciality = (sender as ComboBox).Text;
+            ResetComboBox(comboBoxAdmissionYear);
+            ChangeComboBoxAdmissionYear(comboBoxAdmissionYear,speciality);
+            ResetComboBox(comboBoxDocYear);
+            ResetComboBox(comboBoxSubjectName);
+        }
+
+        private void comboBoxDocYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            docYear = Convert.ToInt32((sender as ComboBox).Text);
+            ChangeComboBoxSubjectNameItems(comboBoxSubjectName, admissionYear, docYear, speciality);
+        }
+
+        private void comboBoxAdmissionYear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            admissionYear = Convert.ToInt32((sender as ComboBox).Text);
+            ResetComboBox(comboBoxDocYear);
+            ChangeComboBoxDocYear(comboBoxDocYear, speciality, admissionYear);
+            ResetComboBox(comboBoxSubjectName);
         }
     }
 }
