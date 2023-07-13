@@ -195,7 +195,7 @@ namespace ExcelToWordProject.Syllabus
                     //    $"{module.Properties.DepartmentName}\n" +
                     //    $"Title plan:{0}\n");
 
-                    EduPlan eduPlan = new EduPlan(module.Properties.BlockName, module.Properties.PartName, module.Name, module.Properties.ModuleCode, module.Properties.DepartmentName, Title.Id);
+                    EduPlan eduPlan = new EduPlan(module.Properties.BlockName, module.Properties.PartName, module.Name, module.Index, module.Properties.DepartmentName, Title.Id); // ModuleCode != ModuleIndex
                     epc.Add(eduPlan);
                     epc.SaveChanges();
                     using (EduPlanCompetenciesContext epcc = new EduPlanCompetenciesContext())
