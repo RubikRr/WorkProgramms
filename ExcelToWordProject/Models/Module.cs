@@ -31,6 +31,14 @@ namespace ExcelToWordProject
             }
         }
 
+        public Module(string index, string name, string[] contentIndexes, ModuleProperties moduleProperties = null)
+        {
+            Properties = moduleProperties;
+            Index = index;
+            Name = name;
+            ContentIndexes = contentIndexes;
+        }
+
         public override string ToString()
         {
             return Index + " " + Name;
