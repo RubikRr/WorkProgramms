@@ -22,14 +22,12 @@ namespace EduPlans.Db.Сontexts.Reference
 
         public Speciality GetSpecialty(string title)
         {
-            return Specialities
-                .First(s => s.Title == title);
+            return Specialities.FirstOrDefault(s => s.Title == title);
         }
 
         public Speciality GetSpecialty(int id)
         {
-            return Specialities
-                .First(s => s.Id == id);
+            return Specialities.FirstOrDefault(s => s.Id == id);
 
         }
     }

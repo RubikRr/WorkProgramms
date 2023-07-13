@@ -39,17 +39,26 @@ namespace EduPlans.Db
 
         public Subject GetSubject(int id)
         {
-            return Subjects.First(s => s.Id == id);
+            return Subjects.FirstOrDefault(s => s.Id == id);
+        }
+
+        public Subject GetSubject(string title)
+        {
+            return Subjects.FirstOrDefault(s => s.Title == title);
         }
 
         public List<Subject> GetSubjects(List<int> idList)
         {
-            return Subjects.Where(s => idList.Contains(s.Id)).ToList();
+            return Subjects
+                .Where(s => idList.Contains(s.Id))
+                .ToList();
         }
 
         public List<string> GetSubjectsTitle(List<int> idList)
         {
-            return GetSubjects(idList).Select(s => s.Title).ToList();
+            return GetSubjects(idList)
+                .Select(s => s.Title)
+                .ToList();
         }
     }   
 }

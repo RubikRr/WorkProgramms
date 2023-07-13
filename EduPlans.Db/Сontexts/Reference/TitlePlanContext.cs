@@ -1,4 +1,5 @@
 ﻿using EduPlans.Db.Models;
+using EduPlans.Db.Models.Reference;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -23,22 +24,44 @@ namespace EduPlans.Db.Сontexts.Reference
 
         public List<TitlePlan> GetTitlePlansBySpecId(int specId)
         {
-            return TitlePlans.Where(x => x.Id == specId).ToList();
+            return TitlePlans
+                .Where(x => x.SpecId == specId)
+                .ToList();
+        }
+
+        public List<string> GetTitlePlansBySpecIdDateEnter(int specId)
+        {
+            return GetTitlePlansBySpecId(specId)
+                .Select(tp => tp.DateEnter.ToString())
+                .ToList();
         }
 
         public List<TitlePlan> GetTitlePlansByDateEnter(int dateEnter)
         {
-            return TitlePlans.Where(x => x.DateEnter == dateEnter).ToList();
+            return TitlePlans
+                .Where(x => x.DateEnter == dateEnter)
+                .ToList();
         }
 
-        public List<TitlePlan> GetTitlePlansByDateEnterAndSpecId(int specId, int dateEnter)
+        public List<TitlePlan> GetTitlePlans(int specId, int dateEnter)
         {
-            return TitlePlans.Where(x => x.Id == specId && x.DateEnter == dateEnter).ToList();
+            return TitlePlans
+                .Where(x => x.SpecId == specId && x.DateEnter == dateEnter)
+                .ToList();
+        }
+
+        public List<string> GetTitlePlansCurrentYear(int specId, int dateEnter)
+        {
+            return GetTitlePlans(specId, dateEnter)
+                .Select(tp => tp.CurrentYear.ToString())
+                .ToList();
         }
 
         public TitlePlan GetTitlePlan(int specId, int dateEnter, int currentYear)
         {
-            return TitlePlans.Where(x => x.Id == specId && x.DateEnter == dateEnter && x.CurrentYear == currentYear).First();
+            return TitlePlans
+                .Where(x => x.SpecId == specId && x.DateEnter == dateEnter && x.CurrentYear == currentYear)
+                .FirstOrDefault();
         }
 
     }
