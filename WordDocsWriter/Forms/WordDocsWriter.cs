@@ -92,8 +92,8 @@ namespace WordDocsWriter
                 pictureBoxAllSubjects.Enabled = false;
 
                 var wordFileType = comboBoxWordFileType.Text;
-                var docYear = comboBoxDocYear.Text; // current_year in BD
-                var admissionYear = comboBoxDocYear.Text; //date_enter in BD
+                var docYear = Convert.ToInt32(comboBoxDocYear.Text); // current_year in BD
+                var admissionYear = Convert.ToInt32(comboBoxAdmissionYear.Text); //date_enter in BD
                 var speciality = comboBoxSpeciality.Text;
                 var subjectName = comboBoxSubjectName.Text;
                 var resultFolderPath = resultFolderPathTextBox.Text;
@@ -101,6 +101,21 @@ namespace WordDocsWriter
                 try
                 {
                     Directory.CreateDirectory(resultFolderPath);
+                    if (writeAllSubjects)
+                    {
+                        
+                        var subjectNames = new List<string>();
+                        foreach (var item in comboBoxSubjectName.Items)
+                        {
+                            subjectNames.Add(item.ToString());
+                        }
+                        var dbReader = new DBReader(subjectNames, admissionYear, docYear, speciality);
+                    }
+                    else
+                    {
+                        var dbReader = new DBReader(new List<string>() { subjectName }, admissionYear, docYear, speciality);
+                    }
+                    
                     // Begin generation
                 }
                 catch (Exception err)

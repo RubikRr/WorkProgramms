@@ -1,50 +1,103 @@
 ﻿using EduPlans.Db;
 using EduPlans.Db.Models;
+using EduPlans.Db.Models.Binding;
 using EduPlans.Db.Models.Reference;
+using EduPlans.Db.Сontexts.Blinding;
 using EduPlans.Db.Сontexts.Reference;
+using ExcelToWordProject;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Xml.Linq;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace WordDocsWriter.Syllabus
 {
     internal class DBReader
     {
-        private List<Module> modules;
+        private List<ExcelToWordProject.Module> modules;
 
-        public DBReader(List<string> subjects)
+        public DBReader(List<string> subjectsTitles, int dateEnter, int currentYear, string specialityTitle)
         {
+            using (SpecialityContext specCon = new SpecialityContext())
+            {
+                Speciality speciality = specCon.GetSpecialty(specialityTitle);
 
+                using (TitlePlanContext tpCon = new TitlePlanContext())
+                {
+                    TitlePlan titlePlan = tpCon.GetTitlePlan(speciality.Id, dateEnter, currentYear);
+
+                    foreach (var subjectTitle in subjectsTitles)
+                    {
+                        List<EduPlan> eduPlans = GetEduplansList(subjectTitle, titlePlan.Id);
+
+                        foreach (EduPlan eduPlan in eduPlans)
+                        {
+                            List<string> compitensiesCodes = GetCompitensiesCodes(eduPlan.Id);
+
+                            var module = new ExcelToWordProject.Module(
+                                eduPlan.CodeSubject,
+                                subjectTitle,
+                                compitensiesCodes.ToArray()
+                                );
+                        }
+                    }
+                }
+            }
         }
 
-        public static List<string> GetAdmissionYears(string speciality)
+        private List<string> GetCompitensiesCodes(int eduPlanId)
+        {
+            using (EduPlanCompetenciesContext epСompCon = new EduPlanCompetenciesContext())
+            using (CompetenceContext compCon = new CompetenceContext())
+            {
+                var compitensiesId = epСompCon.GetEduPlanCompetenciesId(eduPlanId);
+                var compitensiesCodes = compCon.GetCompetenciesCodes(compitensiesId);
+                return compitensiesCodes;
+            }
+        }
+
+        private List<EduPlan> GetEduplansList(string subjectTitle, int titlePlanId)
+        {
+            using (SubjectContext subCon = new SubjectContext())
+            {
+                Subject subject = subCon.GetSubject(subjectTitle);
+
+                using (EduPlanContext epCon = new EduPlanContext())
+                {
+                    return epCon.GetEduPlans(titlePlanId, subject.Id);
+                }
+            }
+        }
+
+        public static List<string> GetAdmissionYears(string specialityTitle)
         {
             List<string> values = new List<string>();
             using (SpecialityContext specc = new SpecialityContext())
             {
-                int specialityId = specc.GetSpecialty(speciality).Id;
+                Speciality speciality = specc.GetSpecialty(specialityTitle);
                 using (TitlePlanContext tpc = new TitlePlanContext())
                 {
-                    values = tpc.GetTitlePlansBySpecId(specialityId).Select(tp => tp.DateEnter.ToString()).ToList();
+                    values = tpc.GetTitlePlansBySpecIdDateEnter(speciality.Id);
                 }
             }
             return values;
         }
 
-        public static List<string> GetDocYears(string speciality, int dateEnter)
+        public static List<string> GetDocYears(string specialityTitle, int dateEnter)
         {
             List<string> values = new List<string>();
             using (SpecialityContext specc = new SpecialityContext())
             {
-                int specialityId = specc.GetSpecialty(speciality).Id;
+                Speciality speciality = specc.GetSpecialty(specialityTitle);
                 using (TitlePlanContext tpc = new TitlePlanContext())
                 {
-                    values = tpc.GetTitlePlansByDateEnterAndSpecId(specialityId, dateEnter).Select(tp => tp.CurrentYear.ToString()).ToList();
+                    values = tpc.GetTitlePlansCurrentYear(speciality.Id, dateEnter);
                 }
             }
             return values;
@@ -61,49 +114,29 @@ namespace WordDocsWriter.Syllabus
             return values;
         }
 
-        public static List<string> GetSubjects(int dateEnter, int currentYear, string speciality = null)
+        public static List<string> GetSubjects(int dateEnter, int currentYear, string specialityTitle)
         {
             List<string> values = new List<string>();
-
-            if (String.IsNullOrEmpty(speciality))
+            using (SpecialityContext specc = new SpecialityContext())
             {
-                using (SubjectContext subc = new SubjectContext())
-                {
-                    foreach (var item in subc.Subjects)
-                        values.Add(item.ToString());
-                }
-            }
-            else
-            {
-                using (SpecialityContext specc = new SpecialityContext())
-                {
-                    int specialityId = specc.GetSpecialty(speciality).Id;
+                Speciality speciality = specc.GetSpecialty(specialityTitle);
 
-                    using (TitlePlanContext tpc = new TitlePlanContext())
+                using (TitlePlanContext tpc = new TitlePlanContext())
+                {
+                    TitlePlan titlePlan = tpc.GetTitlePlan(speciality.Id, dateEnter, currentYear);
+
+                    using (EduPlanContext epc = new EduPlanContext())
                     {
-                        int titlePlanId = tpc.GetTitlePlan(specialityId, dateEnter, currentYear).Id;
+                        List<int> SubjectIdList = epc.GetEduPlansSubjectId(titlePlan.Id);
 
-                        using (EduPlanContext epc = new EduPlanContext())
+                        using (SubjectContext subc = new SubjectContext())
                         {
-                            List<int> SubjectIdList = epc.GetEduPlansSubjectId(titlePlanId);
-
-                            using (SubjectContext subc = new SubjectContext())
-                            {
-                                values = subc.GetSubjectsTitle(SubjectIdList);
-                            }
+                            values = subc.GetSubjectsTitle(SubjectIdList);
                         }
                     }
                 }
             }
-            
             return values;
-        }
-
-        public enum Tables
-        {
-            None,
-            Speciality,
-            Subjects,
         }
     }
 }

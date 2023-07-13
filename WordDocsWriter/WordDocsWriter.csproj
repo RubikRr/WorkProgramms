@@ -135,6 +135,10 @@
       <Project>{1cf108c8-2953-4462-acdf-66574b63decc}</Project>
       <Name>EduPlans.Db</Name>
     </ProjectReference>
+    <ProjectReference Include="..\ExcelToWordProject\ExcelToWordProject.csproj">
+      <Project>{184d2e99-8958-4a37-a9a5-192ee81930e4}</Project>
+      <Name>ExcelToWordProject</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Models\" />
