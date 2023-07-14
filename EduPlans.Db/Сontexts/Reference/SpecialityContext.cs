@@ -30,5 +30,10 @@ namespace EduPlans.Db.Сontexts.Reference
             return Specialities.FirstOrDefault(s => s.Id == id);
 
         }
+
+        public int GetSpecialtyId(string title)
+        {
+            return GetSpecialty(title)?.Id ?? 0;
+        }
     }
 }

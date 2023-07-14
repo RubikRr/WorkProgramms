@@ -20,5 +20,15 @@ namespace EduPlans.Db.Сontexts.Reference
                 Departments.Add(depatment);
             }
         }
+
+        public Depatment GetDepartment(string title)
+        {
+            return Departments.FirstOrDefault(department => department.Title == title);
+        }
+
+        public int GetDepartmentId(string title)
+        {
+            return Departments.FirstOrDefault(department => department.Title == title)?.Id ?? 0;
+        }
     }
 }
