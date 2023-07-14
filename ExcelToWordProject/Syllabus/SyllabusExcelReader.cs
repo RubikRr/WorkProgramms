@@ -210,13 +210,20 @@ namespace ExcelToWordProject.Syllabus
                     {
                         for (int i = 0; i < module.Properties.Semesters.Count; i++)
                         {
+                            var semester = i + 1;
                             var lectures = module.Properties.LecturesHoursBySemesters[i];
                             var practice = module.Properties.PracticalLessonsHoursBySemesters[i];
                             var labs = module.Properties.LaboratoryLessonsHoursBySemesters[i];
                             var ind = module.Properties.IndependentWorkHoursBySemesters[i];
                             //Console.WriteLine($"{module.Name}\nСеместер:{i+1}\nЛекции:{lectures}\nПрактики:{practice}\nЛабы:{labs}\nИнд работа:{ind}\n");
                             var zed = (lectures + practice + labs + ind)/36;
-                            EduSemester es = new EduSemester(eduPlan.Id, i + 1, zed, lectures, practice, labs, ind);
+                            EduSemester es = new EduSemester(eduPlan.Id, semester, zed, lectures, practice, labs, ind);
+
+                            EduPlanFormControl epfc = new EduPlanFormControl(module.Properties.ControlFormToString(semester), eduPlan.Id);
+                            using (EduPlanFormControlContext epfcc = new EduPlanFormControlContext())
+                            {
+                                epfcc.Add(epfc);
+                            }
 
                             esc.Add(es);
                         }

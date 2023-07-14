@@ -129,7 +129,25 @@ namespace ExcelToWordProject.Models
                 $"Есть курсовая работа или нет:{isCourseWork}\n" +
                 $"Код дисциплины:{ModuleCode}";
         }
+
+        public string ControlFormToString(int SemesterNumber)
+        {
+            ControlForm controlForm = Control[SemesterNumber - 1];
+
+            switch (controlForm)
+            {
+                case ControlForm.Exam:
+                    return "Экзамен";
+                case ControlForm.Credit:
+                    return "Зачет";
+                case ControlForm.GradedCredit:
+                    return "Зачет с оц.";
+                default:
+                    return "Ошибка";
+            }
+        }
     }
+
 
 
 
