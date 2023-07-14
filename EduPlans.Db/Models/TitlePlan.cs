@@ -34,7 +34,14 @@ namespace EduPlans.Db.Models
         public TitlePlan(string specialityCode, string profile, DateTime dateUchsovet, int numberUchsovet, int dateEnter, 
             DateTime dateFgos, int numberFgos, string departmentTitle, string included)
         {
-            SpecId = this.GetSpecialityId(specialityCode);
+            using (SpecialityContext sc = new SpecialityContext())
+            {
+                SpecId = sc.GetSpecialtyId(specialityCode);
+            }
+            using (DepartmentContext dc = new DepartmentContext())
+            {
+                DepartmentId = dc.GetDepartmentId(departmentTitle);
+            }            
             Profile = profile;
             DateUchsovet = dateUchsovet;
             NumberUchsovet = numberUchsovet;    
@@ -42,27 +49,9 @@ namespace EduPlans.Db.Models
             DateEnter = dateEnter;
             DateFgos = dateFgos;
             NumberFgos = numberFgos;
-            DepartmentId = this.GetDepartmentId(departmentTitle);
             Included = included;
         }
         public TitlePlan() { }
-
-        public int GetDepartmentId(string departmentTitle)
-        {
-            using (DepartmentContext dc = new DepartmentContext())
-            {
-                return dc.Departments.ToList().FirstOrDefault(department => department.Title == departmentTitle)?.Id ?? 0;
-            }
-        }
-
-        public int GetSpecialityId(string specialityCode)
-        {
-            using (SpecialityContext dc = new SpecialityContext())
-            {
-                return dc.Specialities.ToList().FirstOrDefault(speciality => speciality.Code == specialityCode)?.Id ?? 0;
-            }
-        }
-
 
         public override string  ToString()
         {

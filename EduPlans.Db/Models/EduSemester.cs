@@ -14,7 +14,7 @@ namespace EduPlans.Db.Models
         [Column("edu_plan_id")]
         public int EduPlanId { get; set; }
         public int Semester { get; set; }
-        public Double Zed { get; set; }
+        public double Zed { get; set; }
         public int Lecture { get; set; }
         public int Practice { get; set; }
         public int Laboratory { get; set; }
@@ -22,7 +22,7 @@ namespace EduPlans.Db.Models
         public int IndWork { get; set; }
 
         public EduSemester() { }
-        public EduSemester(int eduPlanId,int semester,double zed,int lecture,int practice,int laboratory, int indWord)
+        public EduSemester(int eduPlanId,int semester, double zed,int lecture,int practice,int laboratory, int indWord)
         {
             EduPlanId= eduPlanId;
             Semester= semester;
