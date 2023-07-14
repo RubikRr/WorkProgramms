@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EduPlans.Db.Сontexts.Reference;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -15,5 +16,15 @@ namespace EduPlans.Db.Models.Binding
         public int EduSemesterId { get; set; }
         [Column("form_control_id")]
         public int FormControlId { get; set; }
+
+        public EduPlanFormControl(string formControl, int eduSemesterId)
+        {
+            using (FormControlContext fcc = new FormControlContext())
+            {
+                FormControlId = fcc.GetFormControlId(formControl);
+            }
+            EduSemesterId = eduSemesterId;
+        }
+
     }
 }
