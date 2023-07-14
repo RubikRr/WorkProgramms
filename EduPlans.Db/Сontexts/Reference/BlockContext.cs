@@ -18,5 +18,10 @@ namespace EduPlans.Db.Сontexts.Reference
         {
             Blocks.Add(block);
         }
+
+        public Block GetBlock(int id)
+        {
+            return Blocks.FirstOrDefault(x => x.Id == id);
+        }
     }
 }

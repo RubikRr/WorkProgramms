@@ -20,10 +20,20 @@ namespace EduPlans.Db.Сontexts.Reference
                 Competencies.Add(competence);
         }
 
-        public Competence GetCompetence(int competencyId)
+        public Competence GetCompetence(int competenceId)
         {
-            return Competencies.FirstOrDefault(competence => competence.Id == competencyId);
+            return Competencies.FirstOrDefault(competence => competence.Id == competenceId);
         }
+        public Competence GetCompetence(string competenceCode)
+        {
+            return Competencies.FirstOrDefault(competence => competence.Code == competenceCode);
+        }
+
+        public int GetCompetenceId(string competenceCode)
+        {
+            return GetCompetence(competenceCode)?.Id ?? 0;
+        }
+
         public List<Competence> GetCompetencies(List<int> competenciesId)
         {
             return Competencies
