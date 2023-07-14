@@ -215,8 +215,8 @@ namespace ExcelToWordProject.Syllabus
                             var labs = module.Properties.LaboratoryLessonsHoursBySemesters[i];
                             var ind = module.Properties.IndependentWorkHoursBySemesters[i];
                             //Console.WriteLine($"{module.Name}\nСеместер:{i+1}\nЛекции:{lectures}\nПрактики:{practice}\nЛабы:{labs}\nИнд работа:{ind}\n");
-
-                            EduSemester es = new EduSemester(eduPlan.Id, i + 1, 0.0, lectures, practice, labs, ind);
+                            var zed = (lectures + practice + labs + ind)/36;
+                            EduSemester es = new EduSemester(eduPlan.Id, i + 1, zed, lectures, practice, labs, ind);
 
                             esc.Add(es);
                         }
