@@ -20,16 +20,12 @@ namespace EduPlans.Db.Models.Binding
 
         public EduPlanCompetencies(string competencyCode, int eduPlanId)
         {
-            CompetencyId = GetCompetenceId(competencyCode);
+            using (CompetenceContext cc = new CompetenceContext())
+            {
+                CompetencyId = cc.GetCompetenceId(competencyCode);
+            }
             EduPlanId = eduPlanId;
         }
         public EduPlanCompetencies() { }
-        public int GetCompetenceId(string competencyIndex)
-        {
-            using (CompetenceContext cc = new CompetenceContext())
-            {
-                return cc.Competencies.FirstOrDefault(competence => competence.Code == competencyIndex)?.Id??0;
-            }
-        }
     }
 }
