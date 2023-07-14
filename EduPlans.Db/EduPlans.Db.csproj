@@ -110,6 +110,7 @@
     <Compile Include="Models\Reference\Speciality.cs" />
     <Compile Include="Models\TitlePlan.cs" />
     <Compile Include="Сontexts\Blinding\EduPlanCompetenciesContext.cs" />
+    <Compile Include="Сontexts\Blinding\EduPlanFormControlContext.cs" />
     <Compile Include="Сontexts\Reference\BlockContext.cs" />
     <Compile Include="Сontexts\Reference\CompetenceContext.cs" />
     <Compile Include="Models\Subject.cs" />
@@ -118,6 +119,7 @@
     <Compile Include="Сontexts\Reference\EduLevelContext.cs" />
     <Compile Include="Сontexts\Reference\EduPlanContext.cs" />
     <Compile Include="Сontexts\Reference\EduSemesterContext.cs" />
+    <Compile Include="Сontexts\Reference\FormControlContext.cs" />
     <Compile Include="Сontexts\Reference\SpecialityContext.cs" />
     <Compile Include="Сontexts\Reference\SubjectContext.cs" />
     <Compile Include="Сontexts\Reference\TitlePlanContext.cs" />
