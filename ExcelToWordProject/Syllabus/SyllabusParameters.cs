@@ -176,51 +176,50 @@ namespace ExcelToWordProject.Syllabus
 
 
                 // Обычные теги
-                new DefaultSyllabusTag(15, 1, "DirectionCode", "Титул", "Номер направления.\r\nНапр.:09.03.01"),
+                new DefaultSyllabusTag(26, 3, "DirectionCode", "Титул", "Номер направления.\r\nНапр.:09.03.01"),
 
-                new DefaultSyllabusTag(17, 1, "DirectionName", "Титул", "Имя направления. \r\nНапр.: Прикладная математика и информатика", true,
+                new DefaultSyllabusTag(28, 3, "DirectionName", "Титул", "Имя направления. \r\nНапр.: Прикладная математика и информатика", true,
                             new RegExpData(){ Expression = @"\d ((.*)(?=[ \n](?=Программа|Профиль))|(.*))",
                                 GroupIndex = 1, RegexOptions = RegexOptions.Singleline }),
 
-                new DefaultSyllabusTag(17, 1, "ProgramValue", "Титул", "Название программы/профиля.", true,
-                            new RegExpData(){ Expression = @"(?:Программа|Профиль) (.*)",
+                new DefaultSyllabusTag(28, 3, "ProgramValue", "Титул", "Название программы/профиля.", true,
+                            new RegExpData(){ Expression = @"((Программа|Профиль).*)",
                                 GroupIndex = 1, RegexOptions = RegexOptions.Singleline | RegexOptions.IgnoreCase }),
 
-                new DefaultSyllabusTag(12, 0, "ProtocolInfo", "Титул", "План одобрен Ученым советом вуза. Протокол №... \r\nНапр.: № 12 от 29.02.2020", true,
+                new DefaultSyllabusTag(23, 2, "ProtocolInfo", "Титул", "План одобрен Ученым советом вуза. Протокол №... \r\nНапр.: № 12 от 29.02.2020", true,
                             new RegExpData(){ Expression = @"Протокол (.*)",
                                 GroupIndex = 1, RegexOptions = RegexOptions.Singleline }),
 
-                 new DefaultSyllabusTag(12, 0, "ProtocolInfoNumber", "Титул", "Номер протокола одобренного Ученым советом вуза. Протокол №... \r\nНапр.: 12 ", true,
+                 new DefaultSyllabusTag(23, 2, "ProtocolInfoNumber", "Титул", "Номер протокола одобренного Ученым советом вуза. Протокол №... \r\nНапр.: 12 ", true,
                             new RegExpData(){ Expression = @" \d* ",
                                 GroupIndex = 0, RegexOptions = RegexOptions.Singleline }),
-                  new DefaultSyllabusTag(12, 0, "ProtocolInfoDate", "Титул", "Дата протокола одобренного Ученым советом вуза. Протокол №... \r\nНапр.: 12 ", true,
+                  new DefaultSyllabusTag(23, 2, "ProtocolInfoDate", "Титул", "Дата протокола одобренного Ученым советом вуза. Протокол №... \r\nНапр.: 12 ", true,
                             new RegExpData(){ Expression = @"\d{2}.\d{2}.\d{4}",
                                 GroupIndex = 0, RegexOptions = RegexOptions.Singleline }),
 
 
 
-                new DefaultSyllabusTag(30, 19, "EducationalStandard", "Титул", "Образовательный стандарт (ФГОС). \r\nНапр.:  № 12 от 10.01.2018"),
+                new DefaultSyllabusTag(41, 22, "EducationalStandard", "Титул", "Образовательный стандарт (ФГОС). \r\nНапр.:  № 12 от 10.01.2018"),
 
 
 
-                   new DefaultSyllabusTag(30, 19, "EducationalStandardNumber", "Титул", "Номер образовательного стандарта (ФГОС). \r\nНапр.: 13",true,new RegExpData(){ Expression = @" \d* ",
+                   new DefaultSyllabusTag(41, 22, "EducationalStandardNumber", "Титул", "Номер образовательного стандарта (ФГОС). \r\nНапр.: 13",true,new RegExpData(){ Expression = @" \d* ",
                                 GroupIndex = 0, RegexOptions = RegexOptions.Singleline }),
 
 
-                 new DefaultSyllabusTag(30, 19, "EducationalStandardDate", "Титул", "Дата образовательного стандарта (ФГОС). \r\nНапр.: 13",true,new RegExpData(){ Expression = @"\d{2}.\d{2}.\d{4}",
+                 new DefaultSyllabusTag(41, 22, "EducationalStandardDate", "Титул", "Дата образовательного стандарта (ФГОС). \r\nНапр.: 13",true,new RegExpData(){ Expression = @"\d{2}.\d{2}.\d{4}",
                                 GroupIndex = 0, RegexOptions = RegexOptions.Singleline }),
 
-                 new DefaultSyllabusTag(30, 0, "StudyForm", "Титул", "Форма обучения.\r\nНапр.: Очная", true,
+                 new DefaultSyllabusTag(41, 2, "StudyForm", "Титул", "Форма обучения.\r\nНапр.: Очная", true,
                             new RegExpData(){ Expression = @".*: (.*)",
                                 GroupIndex = 1, RegexOptions = RegexOptions.Singleline }),
 
-                new DefaultSyllabusTag(28, 0, "Qualification", "Титул", "Квалификация.\r\nНапр.: Бакалавр", true,
+                new DefaultSyllabusTag(39, 2, "Qualification", "Титул", "Квалификация.\r\nНапр.: Бакалавр", true,
                             new RegExpData(){ Expression = @"Квалификация: (.*)",
                                 GroupIndex = 1, RegexOptions = RegexOptions.Singleline | RegexOptions.IgnoreCase }),
-                 new DefaultSyllabusTag(25,1,"DepartmentFromTitle","Титул","Кафедра отвечающая за направление",true),
+                 new DefaultSyllabusTag(36,3,"DepartmentFromTitle","Титул","Кафедра отвечающая за направление",true),
 
-                 new DefaultSyllabusTag(28,19,"DateEnter","Титул","Год поступления учащихся по данному плану",true),
-
+                 new DefaultSyllabusTag(39,22,"DateEnter","Титул","Год поступления учащихся по данному плану",true),
 
 
 

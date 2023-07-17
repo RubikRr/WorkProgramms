@@ -63,6 +63,7 @@ namespace ExcelToWordProject.Syllabus
 
         public void ParseSubjects()
         {
+
             var suyl = new SyllabusParameters(true);
             ConfigManager.SaveConfigData(suyl);
 
@@ -124,8 +125,7 @@ namespace ExcelToWordProject.Syllabus
 
         public void ParseDepartments()
         {
-            //var suyl = new SyllabusParameters(true);
-            //ConfigManager.SaveConfigData(suyl);
+            
 
             var tag = Parameters.Tags.Find(
                     tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.DepartmentNameNotInPlan) as SmartSyllabusTag;
