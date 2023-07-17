@@ -223,7 +223,7 @@ namespace ExcelToWordProject.Syllabus
                     {
                         for (int i = 0; i < module.Properties.Semesters.Count; i++)
                         {
-                            var semester = i + 1;
+                            var semester = module.Properties.Semesters[i];
                             var lectures = module.Properties.LecturesHoursBySemesters[i];
                             var practice = module.Properties.PracticalLessonsHoursBySemesters[i];
                             var labs = module.Properties.LaboratoryLessonsHoursBySemesters[i];
