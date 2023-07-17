@@ -223,6 +223,7 @@ namespace ExcelToWordProject.Syllabus
                             using (EduPlanFormControlContext epfcc = new EduPlanFormControlContext())
                             {
                                 epfcc.Add(epfc);
+                                epfcc.SaveChanges();
                             }
 
                             esc.Add(es);

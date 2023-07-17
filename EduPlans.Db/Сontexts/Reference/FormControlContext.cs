@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EduPlans.Db.Сontexts.Reference
 {
-    internal class FormControlContext : DbContext
+    public class FormControlContext : DbContext
     {
         public DbSet<FormControl> FormControls { get; set; }
 
