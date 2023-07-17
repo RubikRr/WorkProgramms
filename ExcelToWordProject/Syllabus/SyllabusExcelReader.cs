@@ -165,7 +165,7 @@ namespace ExcelToWordProject.Syllabus
 
 
             var directionCode = directionCodeTag.GetValue(null, null, ExcelData);
-            var programValue = programValueTag.GetValue(null, null, ExcelData);
+            var programValue = programValueTag.GetValue(null, null, ExcelData).Trim('"');
             var protocolInfo = (protocolInfoDateTag.GetValue(null, null, ExcelData));
             var protocolInfoDate = new DateTime();
             if (String.IsNullOrEmpty(protocolInfo))

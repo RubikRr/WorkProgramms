@@ -35,7 +35,7 @@ namespace EduPlans.Db.Models
         {
             using (SpecialityContext sc = new SpecialityContext())
             {
-                SpecId = sc.GetSpecialtyId(specialityCode);
+                SpecId = sc.GetIdByCode(specialityCode);
             }
             using (DepartmentContext dc = new DepartmentContext())
             {

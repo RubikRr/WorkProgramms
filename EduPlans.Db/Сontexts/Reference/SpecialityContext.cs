@@ -22,7 +22,7 @@ namespace EduPlans.Db.Сontexts.Reference
 
         public Speciality GetSpecialty(string title)
         {
-            return Specialities.FirstOrDefault(s => s.Title == title);
+            return Specialities.FirstOrDefault(s => s.Title== title);
         }
 
         public Speciality GetSpecialty(int id)
@@ -34,6 +34,10 @@ namespace EduPlans.Db.Сontexts.Reference
         public int GetSpecialtyId(string title)
         {
             return GetSpecialty(title)?.Id ?? 0;
+        }
+        public int GetIdByCode(string code)
+        {
+            return Specialities.FirstOrDefault(s => s.Code == code).Id;
         }
     }
 }
