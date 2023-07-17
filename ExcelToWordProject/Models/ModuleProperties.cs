@@ -132,18 +132,21 @@ namespace ExcelToWordProject.Models
 
         public string ControlFormToString(int SemesterNumber)
         {
-            ControlForm controlForm = Control[SemesterNumber - 1];
-
-            switch (controlForm)
+            if (ControlFormsBySemesters[ControlForm.Exam].Contains(SemesterNumber))
             {
-                case ControlForm.Exam:
-                    return "Экзамен";
-                case ControlForm.Credit:
-                    return "Зачет";
-                case ControlForm.GradedCredit:
-                    return "Зачет с оц.";
-                default:
-                    return "Ошибка";
+                return "Экзамен";
+            }
+            else if (ControlFormsBySemesters[ControlForm.Credit].Contains(SemesterNumber))
+            {
+                return "Зачет";
+            }
+            else if (ControlFormsBySemesters[ControlForm.GradedCredit].Contains(SemesterNumber))
+            {
+                return "Зачет с оц.";
+            }
+            else
+            {
+                return "Ошибка";
             }
         }
     }
