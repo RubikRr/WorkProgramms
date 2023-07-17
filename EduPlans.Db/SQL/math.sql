@@ -444,7 +444,7 @@ CREATE TABLE `edu_plan` ( /*таблица Учебный план (страни
   `id` int(11) NOT NULL,
   `block_id` int(5) NOT NULL, /*ссылка на таблицу Блоки учебного плана*/
   `subject_id` int(11) NOT NULL, /*ссылка на таблицу Дисциплины*/
-  `code_subject` varchar(10) NOT NULL, /*код дисциплины в данном учебном плане*/
+  `code_subject` varchar(32) NOT NULL, /*код дисциплины в данном учебном плане*/
   `department_id` int(5) NOT NULL, /*кафедра, за которой закреплена дисциплина*/
   `title_plan_id` int(11) NOT NULL /*ссылка на таблицу Титульного листа учебного плана (title_plan)*/
 ) ENGINE=InnoDB DEFAULT CHARSET=cp1251;
@@ -617,7 +617,6 @@ CREATE TABLE `subjects` ( /*таблица Дисциплин*/
 CREATE TABLE `title_plan` ( /*Таблица с титульными листами учебных планов*/
   `id` int(11) NOT NULL,
   `spec_id` int(11) NOT NULL, /*ссылка на таблицу Специальности(speciality)-код, по которой защищался*/
-  `profile` varchar(255) NOT NULL, /*профиль*/
   `date_uchsovet` date NOT NULL, /*дата протокола ученого совета*/
   `number_uchsovet` int(5) NOT NULL, /*номер протокола ученого совета*/
   `current_year` year(4) NOT NULL, /*текущий год обучения*/

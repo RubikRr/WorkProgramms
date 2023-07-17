@@ -63,6 +63,9 @@ namespace ExcelToWordProject.Syllabus
 
         public void ParseSubjects()
         {
+            var suyl = new SyllabusParameters(true);
+            ConfigManager.SaveConfigData(suyl);
+
             SmartSyllabusTag moduleNameTag =
               Parameters.Tags.Find(
                   tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.ModuleName) as SmartSyllabusTag;
@@ -219,12 +222,12 @@ namespace ExcelToWordProject.Syllabus
                             var zed = (lectures + practice + labs + ind)/36;
                             EduSemester es = new EduSemester(eduPlan.Id, semester, zed, lectures, practice, labs, ind);
 
-                            EduPlanFormControl epfc = new EduPlanFormControl(module.Properties.ControlFormToString(semester), eduPlan.Id);
-                            using (EduPlanFormControlContext epfcc = new EduPlanFormControlContext())
-                            {
-                                epfcc.Add(epfc);
-                                epfcc.SaveChanges();
-                            }
+                            //EduPlanFormControl epfc = new EduPlanFormControl(module.Properties.ControlFormToString(semester), eduPlan.Id);
+                            //using (EduPlanFormControlContext epfcc = new EduPlanFormControlContext())
+                            //{
+                            //    epfcc.Add(epfc);
+                            //    epfcc.SaveChanges();
+                            //}
 
                             esc.Add(es);
                         }
