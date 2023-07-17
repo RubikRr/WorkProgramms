@@ -221,23 +221,23 @@ namespace ExcelToWordProject.Syllabus
                     }
                     using (EduSemesterContext esc = new EduSemesterContext())
                     {
-                        for (int i = 0; i < module.Properties.Semesters.Count; i++)
+                        foreach (var semester in module.Properties.Semesters)
                         {
-                            var semester = module.Properties.Semesters[i];
-                            var lectures = module.Properties.LecturesHoursBySemesters[i];
-                            var practice = module.Properties.PracticalLessonsHoursBySemesters[i];
-                            var labs = module.Properties.LaboratoryLessonsHoursBySemesters[i];
-                            var ind = module.Properties.IndependentWorkHoursBySemesters[i];
+                          
+                            var lectures = module.Properties.LecturesHoursBySemesters[semester-1];
+                            var practice = module.Properties.PracticalLessonsHoursBySemesters[semester-1];
+                            var labs = module.Properties.LaboratoryLessonsHoursBySemesters[semester - 1];
+                            var ind = module.Properties.IndependentWorkHoursBySemesters[semester - 1];
                             //Console.WriteLine($"{module.Name}\nСеместер:{i+1}\nЛекции:{lectures}\nПрактики:{practice}\nЛабы:{labs}\nИнд работа:{ind}\n");
                             var zed = (lectures + practice + labs + ind)/36;
                             EduSemester es = new EduSemester(eduPlan.Id, semester, zed, lectures, practice, labs, ind);
 
-                            //EduPlanFormControl epfc = new EduPlanFormControl(module.Properties.ControlFormToString(semester), eduPlan.Id);
-                            //using (EduPlanFormControlContext epfcc = new EduPlanFormControlContext())
-                            //{
-                            //    epfcc.Add(epfc);
-                            //    epfcc.SaveChanges();
-                            //}
+                            EduPlanFormControl epfc = new EduPlanFormControl(module.Properties.ControlFormToString(semester), eduPlan.Id);
+                            using (EduPlanFormControlContext epfcc = new EduPlanFormControlContext())
+                            {
+                                epfcc.Add(epfc);
+                                epfcc.SaveChanges();
+                            }
 
                             esc.Add(es);
                         }
