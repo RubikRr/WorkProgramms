@@ -63,6 +63,9 @@ namespace ExcelToWordProject.Syllabus
 
         public void ParseSubjects()
         {
+            var suyl = new SyllabusParameters(true);
+            ConfigManager.SaveConfigData(suyl);
+
             SmartSyllabusTag moduleNameTag =
               Parameters.Tags.Find(
                   tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.ModuleName) as SmartSyllabusTag;
@@ -121,8 +124,7 @@ namespace ExcelToWordProject.Syllabus
 
         public void ParseDepartments()
         {
-            //var suyl = new SyllabusParameters(true);
-            //ConfigManager.SaveConfigData(suyl);
+            
 
             var tag = Parameters.Tags.Find(
                     tag_ => tag_ is SmartSyllabusTag && (tag_ as SmartSyllabusTag).Type == SmartTagType.DepartmentNameNotInPlan) as SmartSyllabusTag;
@@ -163,8 +165,10 @@ namespace ExcelToWordProject.Syllabus
 
             var directionCode = directionCodeTag.GetValue(null, null, ExcelData);
             var programValue = programValueTag.GetValue(null, null, ExcelData);
-            var protocolInfoDate = DateTime.Parse(protocolInfoDateTag.GetValue(null, null, ExcelData));
-            var protocolInfoNumber = int.Parse(protocolInfoNumberTag.GetValue(null, null, ExcelData));
+            //var protocolInfoDate = DateTime.Parse(protocolInfoDateTag.GetValue(null, null, ExcelData));
+            var protocolInfoDate = new DateTime(2003,1,26);
+            //var protocolInfoNumber = int.Parse(protocolInfoNumberTag.GetValue(null, null, ExcelData));
+            var protocolInfoNumber = 0;
             var educationalStandardDate = DateTime.Parse(educationalStandardDateTag.GetValue(null, null, ExcelData));
             var educationalStandardNumber = int.Parse(educationalStandardNumberTag.GetValue(null, null, ExcelData));
             var dateEnter = int.Parse(dateEnterTag.GetValue(null, null, ExcelData));

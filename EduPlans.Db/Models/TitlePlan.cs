@@ -16,7 +16,7 @@ namespace EduPlans.Db.Models
         public int SpecId { get; set; } = 0;
         public string Profile { get; set; }
         [Column("date_uchsovet")]
-        public DateTime DateUchsovet { get; set; }
+        public DateTime DateUchsovet { get; set; }= new DateTime(2003,1,26);
         [Column("number_uchsovet")]
         public int NumberUchsovet { get; set; }
         [Column("current_year")]
