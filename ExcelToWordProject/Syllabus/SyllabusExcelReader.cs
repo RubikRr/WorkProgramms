@@ -166,8 +166,18 @@ namespace ExcelToWordProject.Syllabus
 
             var directionCode = directionCodeTag.GetValue(null, null, ExcelData);
             var programValue = programValueTag.GetValue(null, null, ExcelData);
-            var protocolInfoDate = DateTime.Parse(protocolInfoDateTag.GetValue(null, null, ExcelData));
-            var protocolInfoNumber = int.Parse(protocolInfoNumberTag.GetValue(null, null, ExcelData));
+            var protocolInfo = (protocolInfoDateTag.GetValue(null, null, ExcelData));
+            var protocolInfoDate = new DateTime();
+            if (String.IsNullOrEmpty(protocolInfo))
+            {
+                protocolInfoDate = DateTime.MinValue;
+            }
+            else 
+            {
+            protocolInfoDate = DateTime.Parse(protocolInfo);
+            }
+            var protocolNumber = protocolInfoNumberTag.GetValue(null, null, ExcelData);
+            var protocolInfoNumber = String.IsNullOrEmpty(protocolNumber)?0 :int.Parse(protocolNumber) ;
             var educationalStandardDate = DateTime.Parse(educationalStandardDateTag.GetValue(null, null, ExcelData));
             var educationalStandardNumber = int.Parse(educationalStandardNumberTag.GetValue(null, null, ExcelData));
             var dateEnter = int.Parse(dateEnterTag.GetValue(null, null, ExcelData));
