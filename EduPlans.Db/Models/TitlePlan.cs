@@ -14,7 +14,6 @@ namespace EduPlans.Db.Models
         public int Id { get; set; }
         [Column("spec_id")]
         public int SpecId { get; set; } = 0;
-        public string Profile { get; set; }
         [Column("date_uchsovet")]
         public DateTime DateUchsovet { get; set; }
         [Column("number_uchsovet")]
@@ -31,7 +30,7 @@ namespace EduPlans.Db.Models
         public int DepartmentId { get; set; } = 0;
         public string Included { get; set; }
 
-        public TitlePlan(string specialityCode, string profile, DateTime dateUchsovet, int numberUchsovet, int dateEnter, 
+        public TitlePlan(string specialityCode,  DateTime dateUchsovet, int numberUchsovet, int dateEnter, 
             DateTime dateFgos, int numberFgos, string departmentTitle, string included)
         {
             using (SpecialityContext sc = new SpecialityContext())
@@ -42,7 +41,6 @@ namespace EduPlans.Db.Models
             {
                 DepartmentId = dc.GetDepartmentId(departmentTitle);
             }            
-            Profile = profile;
             DateUchsovet = dateUchsovet;
             NumberUchsovet = numberUchsovet;    
             CurrentYear = DateTime.Now.Year;
@@ -55,7 +53,7 @@ namespace EduPlans.Db.Models
 
         public override string  ToString()
         {
-            return $"Айди:{Id}\nСпециальность:{SpecId}\nКафедра:{DepartmentId}\nПрофиль:{Profile}\nДата уч. совета:{DateUchsovet}  Номер уч. совета:{NumberUchsovet}\nДата ФГОС:{DateFgos} номер ФГОС:{NumberFgos} \nДата поступления:{DateEnter}\nIdКафедры:{DepartmentId}";
+            return $"Айди:{Id}\nСпециальность:{SpecId}\nКафедра:{DepartmentId}\nДата уч. совета:{DateUchsovet}  Номер уч. совета:{NumberUchsovet}\nДата ФГОС:{DateFgos} номер ФГОС:{NumberFgos} \nДата поступления:{DateEnter}\nIdКафедры:{DepartmentId}";
         }
     }
 }
