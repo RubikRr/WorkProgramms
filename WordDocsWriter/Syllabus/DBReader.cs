@@ -5,12 +5,14 @@ using EduPlans.Db.Models.Reference;
 using EduPlans.Db.Сontexts.Blinding;
 using EduPlans.Db.Сontexts.Reference;
 using ExcelToWordProject;
+using ExcelToWordProject.Models;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
@@ -43,13 +45,58 @@ namespace WordDocsWriter.Syllabus
                             var module = new ExcelToWordProject.Module(
                                 eduPlan.CodeSubject,
                                 subjectTitle,
-                                compitensiesCodes.ToArray()
+                                compitensiesCodes.ToArray(),
+                                GetModuleProperties(eduPlan)
                                 );
                         }
                     }
                 }
             }
         }
+
+        private ModuleProperties GetModuleProperties(EduPlan eduPlan)
+        {
+            var moduleProperties = new ModuleProperties();
+
+            using (BlockContext blockCon = new BlockContext())
+            {
+                var block = blockCon.GetBlock(eduPlan.BlockId);
+                moduleProperties.BlockName = block.BlockTitle;
+                moduleProperties.PartName = block.PartTitle;
+
+                // Номер блока
+                string temp = Regex.Replace(block.BlockTitle, @"[^\d]+", "");
+                moduleProperties.BlockNumber = (temp != "") ? Convert.ToInt32(temp) : -1;
+
+            }
+
+            using (EduSemesterContext esCon = new EduSemesterContext())
+            {
+                var eduSemesters = esCon.GetEduSemesters(eduPlan.Id);
+                var creditUnits = 0.0;
+
+                foreach (var eduSemester in eduSemesters)
+                {
+                    creditUnits += eduSemester.Zed;
+                    moduleProperties.Semesters.Add(eduSemester.Semester);
+
+                    moduleProperties.LecturesHoursBySemesters.Add(eduSemester.Lecture);
+                    moduleProperties.PracticalLessonsHoursBySemesters.Add(eduSemester.Practice);
+                    moduleProperties.LaboratoryLessonsHoursBySemesters.Add(eduSemester.Laboratory);
+                    moduleProperties.IndependentWorkHoursBySemesters.Add(eduSemester.IndWork);
+
+                    moduleProperties.TotalHoursByPlan += eduSemester.Lecture + eduSemester.Practice + eduSemester.Laboratory + eduSemester.IndWork;
+                }
+
+            }
+
+            return moduleProperties;
+        }
+        /*
+         пропушено:
+        isCourseWork
+        Часы контроля
+         */
 
         private List<string> GetCompitensiesCodes(int eduPlanId)
         {
