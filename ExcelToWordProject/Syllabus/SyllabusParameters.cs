@@ -183,7 +183,7 @@ namespace ExcelToWordProject.Syllabus
                                 GroupIndex = 1, RegexOptions = RegexOptions.Singleline }),
 
                 new DefaultSyllabusTag(17, 1, "ProgramValue", "Титул", "Название программы/профиля.", true,
-                            new RegExpData(){ Expression = @"((Программа|Профиль).*)",
+                            new RegExpData(){ Expression = @"(?:Программа|Профиль) (.*)",
                                 GroupIndex = 1, RegexOptions = RegexOptions.Singleline | RegexOptions.IgnoreCase }),
 
                 new DefaultSyllabusTag(12, 0, "ProtocolInfo", "Титул", "План одобрен Ученым советом вуза. Протокол №... \r\nНапр.: № 12 от 29.02.2020", true,
