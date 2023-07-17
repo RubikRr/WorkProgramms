@@ -81,7 +81,6 @@
     <Compile Include="Forms\WordDocsWriter.Designer.cs">
       <DependentUpon>WordDocsWriter.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Title.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Syllabus\DBReader.cs" />
@@ -141,7 +140,9 @@
       <Name>ExcelToWordProject</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Models\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>
