@@ -169,7 +169,7 @@ namespace ExcelToWordProject.Syllabus
             var educationalStandardNumber = int.Parse(educationalStandardNumberTag.GetValue(null, null, ExcelData));
             var dateEnter = int.Parse(dateEnterTag.GetValue(null, null, ExcelData));
             var departmentFromTitle = departmentFromTitleTag.GetValue(null, null, ExcelData);
-            var title = new TitlePlan(directionCode, programValue, protocolInfoDate, protocolInfoNumber, dateEnter, educationalStandardDate, educationalStandardNumber, departmentFromTitle, "1");
+            var title = new TitlePlan(directionCode, protocolInfoDate, protocolInfoNumber, dateEnter, educationalStandardDate, educationalStandardNumber, departmentFromTitle, "1");
             using (TitlePlanContext tpc = new TitlePlanContext())
             {
                 tpc.Add(title);
