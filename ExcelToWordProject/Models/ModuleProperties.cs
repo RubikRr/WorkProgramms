@@ -154,6 +154,30 @@ namespace ExcelToWordProject.Models
                 return "Ошибка";
             }
         }
+
+        public static ControlForm StringToControlForm(string formControl)
+        {
+            if (formControl == "Экзамен")
+            {
+                return ControlForm.Exam;
+            }
+            else if (formControl == "Зачет")
+            {
+                return ControlForm.Credit;
+            }
+            else if (formControl == "Зачет с оц.")
+            {
+                return ControlForm.GradedCredit;
+            }
+            else if (formControl == "КР")
+            {
+                return ControlForm.CourseWork;
+            }
+            else
+            {
+                return ControlForm.Error;
+            }
+        }
     }
 
 

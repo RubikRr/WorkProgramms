@@ -47,6 +47,7 @@ namespace WordDocsWriter.Syllabus
                                 subjectTitle,
                                 compitensiesCodes.ToArray(),
                                 GetModuleProperties(eduPlan)
+                                //new ModuleProperties()
                                 );
                         }
                     }
@@ -86,6 +87,10 @@ namespace WordDocsWriter.Syllabus
                     moduleProperties.IndependentWorkHoursBySemesters.Add(eduSemester.IndWork);
 
                     moduleProperties.TotalHoursByPlan += eduSemester.Lecture + eduSemester.Practice + eduSemester.Laboratory + eduSemester.IndWork;
+
+                    foreach (var formControl in GetControlForms(eduSemester.Id))
+                        moduleProperties.ControlFormsBySemesters[formControl].Add(eduSemester.Semester);
+
                 }
 
             }
@@ -97,6 +102,24 @@ namespace WordDocsWriter.Syllabus
         isCourseWork
         Часы контроля
          */
+
+        private List<ControlForm> GetControlForms(int eduSemesterId)
+        {
+            var formControls = new List<ControlForm>();
+            using (EduPlanFormControlContext epfcCon = new EduPlanFormControlContext())
+            using (FormControlContext fcCon = new FormControlContext())
+            {
+                var formControlIdList = epfcCon.GetFormControlsIdList(eduSemesterId);
+
+                foreach (var formControlId in formControlIdList)
+                {
+                    var formControlTitle = fcCon.GetFormControlTitle(formControlId);
+                    var formControl = ModuleProperties.StringToControlForm(formControlTitle);
+                    formControls.Add(formControl);
+                }
+            }
+            return formControls;
+        }
 
         private List<string> GetCompitensiesCodes(int eduPlanId)
         {

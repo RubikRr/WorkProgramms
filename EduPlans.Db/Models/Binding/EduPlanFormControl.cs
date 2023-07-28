@@ -17,6 +17,7 @@ namespace EduPlans.Db.Models.Binding
         [Column("form_control_id")]
         public int FormControlId { get; set; }
 
+        public EduPlanFormControl() { }
         public EduPlanFormControl(string formControl, int eduSemesterId)
         {
             using (FormControlContext fcc = new FormControlContext())

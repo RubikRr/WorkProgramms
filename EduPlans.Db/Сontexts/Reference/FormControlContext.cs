@@ -23,5 +23,15 @@ namespace EduPlans.Db.Сontexts.Reference
         {
             return GetFormControl(title)?.Id ?? 0;
         }
+
+        public FormControl GetFormControl(int id)
+        {
+            return FormControls.FirstOrDefault(c => c.Id == id);
+        }
+
+        public string GetFormControlTitle(int id)
+        {
+            return GetFormControl(id)?.Title ?? "ERROR";
+        }
     }
 }

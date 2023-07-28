@@ -19,6 +19,14 @@ namespace EduPlans.Db.Сontexts.Blinding
             EduPlanFormControls.Add(eduPlanFormControl);
         }
 
+        public List<EduPlanFormControl> GetEduPlanFormControlList(int eduSemesterId)
+        {
+            return EduPlanFormControls.Where(x => x.EduSemesterId == eduSemesterId).ToList();
+        }
 
+        public List<int> GetFormControlsIdList(int eduSemesterId)
+        {
+            return GetEduPlanFormControlList(eduSemesterId).Select(x => x.FormControlId).ToList();
+        }
     }
 }
