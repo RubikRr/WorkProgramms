@@ -239,19 +239,12 @@ namespace ExcelToWordProject.Syllabus
                                 epfcc.Add(epfc);
                                 epfcc.SaveChanges();
                             }
-
-                            
-                        }
-                        
+                        }    
                     }
                 }
-
-
             }
-
-
-
         }
+
         public void CloseStreams()
         {
             if (excelStream != null)
@@ -440,10 +433,10 @@ namespace ExcelToWordProject.Syllabus
             }
 
             // Будет ли курсовая работа
-            SmartSyllabusTag courseWorkTag =
-                Parameters.Tags.Find(
-                    tag => tag is SmartSyllabusTag && (tag as SmartSyllabusTag).Type == SmartTagType.isCourseWork) as SmartSyllabusTag;
-            properties.isCourseWork = ((rows[rowIndex][courseWorkTag.ColumnIndex] as string) ?? "") != "";
+            //SmartSyllabusTag courseWorkTag =
+            //    Parameters.Tags.Find(
+            //        tag => tag is SmartSyllabusTag && (tag as SmartSyllabusTag).Type == SmartTagType.isCourseWork) as SmartSyllabusTag;
+            //properties.isCourseWork = ((rows[rowIndex][courseWorkTag.ColumnIndex] as string) ?? "") != "";
 
 
             // Зачетные единицы

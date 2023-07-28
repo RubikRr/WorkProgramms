@@ -82,10 +82,11 @@ namespace ExcelToWordProject.Models
                                         { ControlForm.Credit, new List<int>() },
                                         { ControlForm.Exam, new List<int>() },
                                         { ControlForm.GradedCredit, new List<int>() },
+                                        { ControlForm.CourseWork, new List<int>() },
                                     };
 
         public int TotalHoursByPlan = 0;
-        public bool isCourseWork = false;
+        //public bool isCourseWork = false;
 
 
 
@@ -126,7 +127,7 @@ namespace ExcelToWordProject.Models
                 $"PartName:{PartName}\n" +
                 $"CreditUnits:{CreditUnits}\n" +
                 $"Название кафедры:{DepartmentName}\n" +
-                $"Есть курсовая работа или нет:{isCourseWork}\n" +
+//                $"Есть курсовая работа или нет:{isCourseWork}\n" +
                 $"Код дисциплины:{ModuleCode}";
         }
 
@@ -144,6 +145,10 @@ namespace ExcelToWordProject.Models
             {
                 return "Зачет с оц.";
             }
+            else if (ControlFormsBySemesters[ControlForm.CourseWork].Contains(SemesterNumber))
+            {
+                return "КР";
+            }
             else
             {
                 return "Ошибка";
@@ -155,5 +160,5 @@ namespace ExcelToWordProject.Models
 
 
     // Формы контроля: Экзамен, Зачет, Зачет с оценкой
-    public enum ControlForm { Exam, Credit, GradedCredit, Error }
+    public enum ControlForm { Exam, Credit, GradedCredit, CourseWork, Error }
 }

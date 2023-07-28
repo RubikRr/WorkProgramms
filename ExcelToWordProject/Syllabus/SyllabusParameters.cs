@@ -441,7 +441,9 @@ namespace ExcelToWordProject.Syllabus
                     return OtherUtils.ListToDelimiteredString("/", "", isCreditBySemesters);
 
                 case SmartTagType.isCourseWork:
-                    return properties.isCourseWork ? "+" : "-";
+                    return (properties.ControlFormsBySemesters[ControlForm.CourseWork]?.Count ?? 0) != 0 ? "+" : "-";
+                //case SmartTagType.isCourseWork:
+                //    return properties.isCourseWork ? "+" : "-";
 
                 case SmartTagType.DepartmentName:
                     return properties.DepartmentName;
