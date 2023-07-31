@@ -47,7 +47,6 @@ namespace WordDocsWriter.Syllabus
                                 subjectTitle,
                                 compitensiesCodes.ToArray(),
                                 GetModuleProperties(eduPlan)
-                                //new ModuleProperties()
                                 );
                         }
                     }
@@ -92,9 +91,16 @@ namespace WordDocsWriter.Syllabus
                         moduleProperties.ControlFormsBySemesters[formControl].Add(eduSemester.Semester);
 
                 }
-
+                moduleProperties.CreditUnits = creditUnits.ToString();
+                
             }
 
+            using (DepartmentContext dCon = new DepartmentContext())
+            {
+                var department = dCon.GetDepartment(eduPlan.DepartmentId);
+                moduleProperties.DepartmentName = department.Title;
+                // moduleProperties.ModuleCode = непонятка
+            }
             return moduleProperties;
         }
         /*
